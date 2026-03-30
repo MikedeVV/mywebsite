@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miguel Vazquez Vicente - Enterprise AI @ Microsoft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04090f;--surface:#080f1a;--surface2:#0d1a2e;--border:rgba(0,180,216,0.12);--accent:#00b4d8;--accent2:#0077b6;--accent3:#48cae4;--text:#dde8f0;--muted:#5a7a94;--white:#f0f8ff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,180,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;background:rgba(4,9,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+section{position:relative;z-index:1}
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:#04090f;font-weight:600}
+.btn-primary:hover{background:var(--accent3);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,180,216,.3)}
+.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-outline:hover{background:rgba(0,180,216,.08);transform:translateY(-1px)}
+.tag{font-family:'DM Mono',monospace;font-size:.7rem;padding:.25rem .7rem;border-radius:20px;letter-spacing:.05em}
+.tag-blue{background:rgba(0,180,216,.15);color:var(--accent);border:1px solid rgba(0,180,216,.2)}
+.tag-dark{background:rgba(0,119,182,.18);color:var(--accent3);border:1px solid rgba(72,202,228,.2)}
+.tag-dim{background:rgba(90,122,148,.12);color:var(--muted);border:1px solid rgba(90,122,148,.2)}
+.tag-agents{background:rgba(0,180,216,.12);color:#48cae4;border:1px solid rgba(72,202,228,.2)}
+.tag-gtm2{background:rgba(0,119,182,.14);color:#90e0ef;border:1px solid rgba(144,224,239,.2)}
+.tag-workforce{background:rgba(2,62,138,.2);color:#a8dadc;border:1px solid rgba(168,218,220,.15)}
+.section-header{margin-bottom:3.5rem}
+.section-eyebrow{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--white);line-height:1.1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+@keyframes growAI{to{width:40%}}
+@keyframes barGrow{to{transform:scaleX(1)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:800;line-height:1.06;color:var(--white);margin-bottom:1.4rem;opacity:0;animation:fadeUp .7s .25s forwards}
+.hero-title .line2{display:block;color:var(--accent)}
+.hero-role{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--muted);margin-bottom:1.6rem;opacity:0;animation:fadeUp .7s .4s forwards}
+.hero-role strong{color:var(--accent3);font-weight:400}
+.hero-bio{font-size:1.02rem;color:var(--text);max-width:480px;margin-bottom:2.4rem;opacity:0;animation:fadeUp .7s .55s forwards}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .7s forwards}
+.hero-stats{opacity:0;animation:fadeIn .9s .9s forwards}
+.stats-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.4rem;position:relative;overflow:hidden}
+.stats-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,180,216,.12) 0%,transparent 70%);pointer-events:none}
+.stat-value{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.3rem}
+.stat-label{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.stat-divider{height:1px;background:var(--border);margin:1.4rem 0}
+.exp-bar-block{margin-bottom:.2rem}
+.exp-bar-headline{display:flex;align-items:baseline;gap:.55rem;margin-bottom:.25rem}
+.exp-bar-inline-label{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white)}
+.exp-bar-subtitle{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--white);opacity:.75;margin-bottom:1rem}
+.exp-bar-track{position:relative;height:8px;background:var(--surface2);border-radius:99px;margin-bottom:.55rem}
+.exp-bar-fill-base{position:absolute;left:0;top:0;bottom:0;width:100%;background:rgba(0,180,216,.18);border-radius:99px}
+.exp-bar-fill-ai{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,rgba(0,180,216,.5),var(--accent));border-radius:99px;box-shadow:0 0 10px rgba(0,180,216,.3);animation:growAI 1.4s .6s cubic-bezier(.16,1,.3,1) forwards}
+.exp-bar-legend{display:flex;gap:1.2rem;align-items:center;margin-top:1.2rem}
+.exp-legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:.3rem}
+.dot-tech{background:rgba(0,180,216,.4);border:1px solid rgba(0,180,216,.5)}
+.dot-ai{background:var(--accent);box-shadow:0 0 6px rgba(0,180,216,.4)}
+.exp-legend-text{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em}
+.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.4rem}
+.industry-item{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.65rem .3rem;border:1px solid var(--border);border-radius:8px;background:rgba(0,180,216,.03);transition:all .2s}
+.industry-item:hover{border-color:rgba(0,180,216,.3);background:rgba(0,180,216,.07)}
+.industry-icon{font-size:1.25rem;line-height:1}
+.industry-label{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.3}
+.stack-layers{display:flex;flex-direction:column;gap:.28rem;margin-top:.4rem}
+.stack-layer{display:flex;align-items:center;gap:.65rem;padding:.5rem .75rem;border-radius:6px;border:1px solid transparent;transition:transform .2s;position:relative;overflow:hidden}
+.stack-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;border-radius:2px 0 0 2px}
+.stack-layer:hover{transform:translateX(3px)}
+.layer-0{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.18)}.layer-0::before{background:#ef4444}
+.layer-1{background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.18)}.layer-1::before{background:#f97316}
+.layer-2{background:rgba(234,179,8,.07);border-color:rgba(234,179,8,.18)}.layer-2::before{background:#eab308}
+.layer-3{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.18)}.layer-3::before{background:#22c55e}
+.layer-4{background:rgba(0,180,216,.07);border-color:rgba(0,180,216,.18)}.layer-4::before{background:var(--accent)}
+.layer-5{background:rgba(139,92,246,.07);border-color:rgba(139,92,246,.18)}.layer-5::before{background:#8b5cf6}
+.layer-6{background:rgba(236,72,153,.07);border-color:rgba(236,72,153,.18)}.layer-6::before{background:#ec4899}
+.layer-icon{font-size:.9rem;flex-shrink:0;width:18px;text-align:center}
+.layer-content{flex:1;min-width:0}
+.layer-num{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--muted);letter-spacing:.08em;opacity:.6}
+.layer-name{font-family:'DM Mono',monospace;font-size:.67rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.layer-sub{font-size:.58rem;color:var(--muted);opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#about{padding:7rem 0;border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start}
+.motto{font-family:'DM Mono',monospace;font-style:italic;font-size:.88rem;color:var(--accent3);line-height:1.6;padding:1.2rem 1.4rem;border-left:3px solid var(--accent);background:rgba(0,180,216,.04);border-radius:0 6px 6px 0;margin-top:2rem}
+.skills-block{margin-top:2.5rem}
+.skills-block h4{font-family:'DM Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1rem}
+.skill-bar-item{margin-bottom:1rem}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:.82rem;color:var(--text);margin-bottom:.4rem}
+.skill-bar-label span:last-child{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+.skill-bar-track{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;transform-origin:left;animation:barGrow 1s ease forwards;transform:scaleX(0)}
+.lang-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.edu-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.edu-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem}
+.edu-degree{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.edu-school{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)}
+.edu-year{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:11px;top:8px;bottom:0;width:1px;background:var(--border)}
+.exp-item{display:grid;grid-template-columns:24px 1fr;gap:1.2rem;margin-bottom:2.6rem}
+.exp-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.exp-dot-inner{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.exp-dot.dim{border-color:var(--muted)}.exp-dot.dim .exp-dot-inner{background:var(--muted)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.3rem;margin-bottom:.2rem}
+.exp-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white)}
+.exp-period{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);white-space:nowrap}
+.exp-company{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--accent);margin-bottom:.6rem}
+.exp-desc{font-size:.9rem;color:var(--muted);line-height:1.65}
+#projects{padding:7rem 0;border-top:1px solid var(--border)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.8rem;transition:all .25s;position:relative;overflow:hidden}
+.project-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.project-card:hover{border-color:rgba(0,180,216,.3);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.project-card:hover::after{transform:scaleX(1)}
+.project-icon{width:36px;height:36px;border-radius:8px;background:rgba(0,180,216,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1rem}
+.project-title{font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700;color:var(--white);margin-bottom:.6rem;line-height:1.3}
+.project-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+#blog{padding:7rem 0;border-top:1px solid var(--border)}
+.blog-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.blog-tabs{display:flex;align-items:center;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.blog-tab{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;border-radius:20px;font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .2s}
+.blog-tab:hover{border-color:var(--accent);color:var(--accent)}
+.blog-tab.active{background:var(--accent);border-color:var(--accent);color:#04090f;font-weight:600}
+.tab-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.tab-dot-all{background:var(--accent3)}.tab-dot-mine{background:var(--accent)}.tab-dot-book{background:#10b981}
+.blog-tab.active .tab-dot{opacity:.6}
+#blog-loading{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--muted);padding:3rem 0}
+.loading-dot{display:inline-block;animation:blink 1.2s infinite}
+.loading-dot:nth-child(2){animation-delay:.2s}.loading-dot:nth-child(3){animation-delay:.4s}
+.carousel-wrapper{display:none;position:relative;align-items:center;gap:.8rem}
+.carousel-track{display:flex;gap:1.2rem;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:.5rem 0 1.5rem;flex:1;-ms-overflow-style:none}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-btn{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.carousel-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.07)}
+.carousel-btn:disabled{opacity:.25;cursor:default}
+.c-card{flex:0 0 272px;border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;position:relative}
+.c-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.c-type-badge{position:absolute;top:.9rem;right:.9rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .6rem;border-radius:20px}
+.c-card-top{padding:1.4rem 1.2rem 1rem;flex:1}
+.c-card-icon{font-size:1.4rem;display:block;margin-bottom:.5rem}
+.c-author{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem}
+.c-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:.4rem}
+.c-desc{font-size:.8rem;color:var(--muted);line-height:1.6;padding:0 1.2rem 1rem}
+.c-card-footer{padding:.75rem 1.2rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
+.c-date{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)}
+.c-arrow{font-size:.9rem;transition:transform .2s}.c-card:hover .c-arrow{transform:translateX(4px)}
+.card-myarticle{background:var(--surface);border:1px solid rgba(0,180,216,.25)}
+.card-myarticle .c-card-top{background:linear-gradient(135deg,rgba(0,119,182,.28) 0%,rgba(0,180,216,.06) 100%);border-bottom:1px solid rgba(0,180,216,.12)}
+.card-myarticle .c-type-badge{background:rgba(0,180,216,.15);color:var(--accent);border:1px solid rgba(0,180,216,.25)}
+.card-myarticle .c-card-icon,.card-myarticle .c-arrow{color:var(--accent)}
+.card-article{background:var(--surface);border:1px solid rgba(251,191,36,.18)}
+.card-article .c-card-top{background:linear-gradient(135deg,rgba(180,83,9,.22) 0%,rgba(251,191,36,.04) 100%);border-bottom:1px solid rgba(251,191,36,.1)}
+.card-article .c-type-badge{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.card-article .c-card-icon{color:#f59e0b}.card-article .c-arrow{color:#fbbf24}
+.card-book{background:var(--surface);border:1px solid rgba(16,185,129,.18)}
+.card-book .c-card-top{background:linear-gradient(135deg,rgba(6,78,59,.32) 0%,rgba(16,185,129,.05) 100%);border-bottom:1px solid rgba(16,185,129,.1)}
+.card-book .c-type-badge{background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.2)}
+.card-book .c-card-icon{color:#34d399}.card-book .c-arrow{color:#34d399}
+.card-social{background:var(--surface);border:1px solid rgba(99,102,241,.18)}
+.card-social .c-card-top{background:linear-gradient(135deg,rgba(49,46,129,.32) 0%,rgba(99,102,241,.06) 100%);border-bottom:1px solid rgba(99,102,241,.1)}
+.card-social .c-type-badge{background:rgba(99,102,241,.12);color:#818cf8;border:1px solid rgba(99,102,241,.2)}
+.card-social .c-card-icon,.card-social .c-arrow{color:#818cf8}
+footer{border-top:1px solid var(--border);padding:4rem 0 3rem;position:relative;z-index:1}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+.footer-name{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);margin-bottom:.3rem}
+.footer-sub{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+.social-links{display:flex;gap:1rem;flex-wrap:wrap}
+.social-link{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;border:1px solid var(--border);border-radius:6px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.06em;transition:all .2s}
+.social-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.05)}
+.footer-copy{text-align:center;margin-top:3rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);opacity:.6}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}.about-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:600px){.nav-links{display:none}.container{padding:0 1.2rem}.footer-inner{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">MV<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Inspiration</a></li>
+    <li><a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank">LinkedIn &#x2197;</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">// Enterprise AI &middot; Madrid, Spain</p>
+        <h1 class="hero-title">Hey, I'm<br><span class="line2">Miguel.</span></h1>
+        <p class="hero-role"><strong>Enterprise AI Business Exec</strong><br>@ Microsoft &nbsp;&middot;&nbsp; @Professional Lecturer &nbsp;&middot;&nbsp; @AI Advisor</p>
+        <p class="hero-bio">Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments and turn full-stack AI strategy into measurable outcomes.</p>
+        <div class="hero-cta">
+          <a href="#about" class="btn btn-primary">View Resume &rarr;</a>
+          <a href="#blog" class="btn btn-outline">Inspiration Ideas</a>
+          <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn &#x2197;</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stats-card">
+          <div class="exp-bar-block">
+            <div class="exp-bar-headline">
+              <span class="stat-value" style="color:var(--white)">10+</span>
+              <span class="exp-bar-inline-label">Years in Tech</span>
+            </div>
+            <div class="exp-bar-subtitle">4 in AI Tech Ecosystem</div>
+            <div class="exp-bar-track">
+              <div class="exp-bar-fill-base"></div>
+              <div class="exp-bar-fill-ai"></div>
+            </div>
+            <div class="exp-bar-legend">
+              <span class="exp-legend-dot dot-tech"></span><span class="exp-legend-text">Tech career</span>
+              <span class="exp-legend-dot dot-ai"></span><span class="exp-legend-text">AI Tech Ecosystem</span>
+            </div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-label" style="margin-bottom:.6rem">Industry Expertise</div>
+          <div class="industry-grid">
+            <div class="industry-item"><span class="industry-icon">&#128225;</span><span class="industry-label">Telco</span></div>
+            <div class="industry-item"><span class="industry-icon">&#9981;</span><span class="industry-label">Resources</span></div>
+            <div class="industry-item"><span class="industry-icon">&#127981;</span><span class="industry-label">Manufacturing</span></div>
+            <div class="industry-item"><span class="industry-icon">&#127959;</span><span class="industry-label">Construction</span></div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-label" style="margin-bottom:.6rem">Operating Stack (End&#8209;to&#8209;End)</div>
+          <div class="stack-layers">
+            <div class="stack-layer layer-0"><span class="layer-icon">&#9878;</span><div class="layer-content"><div class="layer-num">LAYER 0</div><div class="layer-name">Regulation &amp; Policy</div><div class="layer-sub">AI Act &middot; GDPR &middot; Responsible AI</div></div></div>
+            <div class="stack-layer layer-1"><span class="layer-icon">&#128737;</span><div class="layer-content"><div class="layer-num">LAYER 1</div><div class="layer-name">Govern &middot; Secure &middot; Observe</div><div class="layer-sub">Agent365 &middot; Security Platforms</div></div></div>
+            <div class="stack-layer layer-2"><span class="layer-icon">&#128452;</span><div class="layer-content"><div class="layer-num">LAYER 2</div><div class="layer-name">Enterprise Knowledge &amp; Data</div><div class="layer-sub">Connectors &middot; Grounding &middot; Retrieval</div></div></div>
+            <div class="stack-layer layer-3"><span class="layer-icon">&#129504;</span><div class="layer-content"><div class="layer-num">LAYER 3</div><div class="layer-name">Model Layer (LLMs)</div><div class="layer-sub">Azure OpenAI &middot; AI Foundry &middot; Model Agnostic</div></div></div>
+            <div class="stack-layer layer-4"><span class="layer-icon">&#129302;</span><div class="layer-content"><div class="layer-num">LAYER 4</div><div class="layer-name">Orchestration &amp; Agent Runtime</div><div class="layer-sub">AI Agents &middot; Copilot &middot; Cowork</div></div></div>
+            <div class="stack-layer layer-5"><span class="layer-icon">&#128736;</span><div class="layer-content"><div class="layer-num">LAYER 5</div><div class="layer-name">Build Studio (Low&#8209;code &#8594; Pro&#8209;code)</div><div class="layer-sub">Copilot Studio &middot; VS / GitHub &middot; Vibe Coding</div></div></div>
+            <div class="stack-layer layer-6"><span class="layer-icon">&#128640;</span><div class="layer-content"><div class="layer-num">LAYER 6</div><div class="layer-name">Adopt &middot; Operate &middot; Monetize</div><div class="layer-sub">CoE Design &middot; Change Mgmt &middot; GTM Strategy</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-header">
+          <p class="section-eyebrow">// 01 &mdash; About</p>
+          <h2 class="section-title">The person behind the pitch.</h2>
+        </div>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.75;margin-bottom:1rem">Industrial Engineer turned Enterprise AI Sales. From Vodafone Key Account to Product Marketing, to co-founding a sustainable mobility startup, to Microsoft &mdash; where I help Spain&rsquo;s largest enterprises build AI strategies that actually move the needle.</p>
+        <div class="motto">&ldquo;Leave things better than you found them&mdash;and enjoy doing it.&rdquo;</div>
+        <div class="skills-block">
+          <h4>Technology Expertise</h4>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span>AI User Interface</span><span>Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span>AI Governance</span><span>Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span>AI Security &amp; Compliance</span><span>Medium</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%;animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span>AI Framework</span><span>Medium</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%;animation-delay:.3s"></div></div></div>
+        </div>
+        <div class="skills-block">
+          <h4>Languages</h4>
+          <div class="lang-tags">
+            <span class="tag tag-blue">Espa&ntilde;ol &mdash; Native</span>
+            <span class="tag tag-dark">English &mdash; Professional</span>
+            <span class="tag tag-dim">Portugu&ecirc;s &mdash; Limited</span>
+          </div>
+        </div>
+        <div class="skills-block">
+          <h4>Education</h4>
+          <div class="edu-grid">
+            <div class="edu-item"><div class="edu-degree">Industrial Engineering &amp; Operations Management</div><div class="edu-school">Universidad Polit&eacute;cnica de Valencia</div><div class="edu-year">2011 &ndash; 2013</div></div>
+            <div class="edu-item"><div class="edu-degree">Industrial Design Engineering &amp; Product Development</div><div class="edu-school">Universidad Polit&eacute;cnica de Valencia</div><div class="edu-year">2008 &ndash; 2011</div></div>
+            <div class="edu-item"><div class="edu-degree">Master in Industrial Management</div><div class="edu-school">Politechnika Poznanska, Poland</div><div class="edu-year">2011</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="section-header">
+          <p class="section-eyebrow">// 02 &mdash; Experience</p>
+          <h2 class="section-title">Where I&rsquo;ve built.</h2>
+        </div>
+        <div class="timeline">
+          <div class="exp-item"><div class="exp-dot"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Enterprise AI Business Exec</div><div class="exp-period">Oct 2022 &mdash; Present</div></div><div class="exp-company">MICROSOFT &middot; Madrid</div><div class="exp-desc">Orchestrate cross-functional teams to develop end-to-end AI strategies. Drove revenue from zero to <strong style="color:var(--accent)">&euro;9M ARR</strong> in AI. Key deals: Repsol, Ferrovial, Iberdrola.</div></div></div>
+          <div class="exp-item"><div class="exp-dot"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Customer Success Manager &mdash; Modern Workplace</div><div class="exp-period">Feb 2020 &mdash; Oct 2022</div></div><div class="exp-company">MICROSOFT &middot; Madrid</div><div class="exp-desc">Drove digital transformation for Financial and Manufacturing clients across major Spanish enterprises.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Co-Founder</div><div class="exp-period">Nov 2018 &mdash; Dec 2019</div></div><div class="exp-company">WELIFEVAN &middot; Barcelona</div><div class="exp-desc">Co-founded and led digital marketing strategy in the sustainable mobility and camper-rental market.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Product Marketing Manager &mdash; Modern Workplace</div><div class="exp-period">Jul 2016 &mdash; Jul 2019</div></div><div class="exp-company">VODAFONE &middot; Madrid</div><div class="exp-desc">Responsible for Product Roadmap, P&amp;L, budget and KPIs of a &euro;20M portfolio. Reported to C-level.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Corporate Key Account Manager</div><div class="exp-period">Dec 2013 &mdash; Jul 2016</div></div><div class="exp-company">VODAFONE SPAIN &middot; Barcelona</div><div class="exp-desc">Built long-term C-level relationships and identified customer needs with cross-functional teams.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Associate Professor &mdash; Product Marketing</div><div class="exp-period">Oct 2018 &mdash; Jun 2019</div></div><div class="exp-company">ESCUELA DE NEGOCIO LLUIS VIVES</div><div class="exp-desc">Taught product marketing fundamentals alongside professional career.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">// 03 &mdash; Projects</p>
+      <h2 class="section-title">AI frameworks I&rsquo;ve built in the field.</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal"><div class="project-icon">&#127981;</div><div class="project-title">AI Industry Value Acceleration</div><div class="project-desc">Built repeatable, industry-focused motions translating AI capabilities into measurable business outcomes across Resources, Manufacturing &amp; Construction.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-gtm2">GTM</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.08s"><div class="project-icon">&#9881;</div><div class="project-title">AI Center of Excellence (CoE)</div><div class="project-desc">Cross-functional CoE approach &mdash; operating model, governance, and standards &mdash; to scale AI across the enterprise while staying in control.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-gtm2">GTM</span><span class="tag tag-workforce">Workforce</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.16s"><div class="project-icon">&#128216;</div><div class="project-title">AI Adoption Playbook &amp; Change Framework</div><div class="project-desc">Scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.</div><div class="project-tags"><span class="tag tag-workforce">Workforce</span><span class="tag tag-gtm2">GTM</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.24s"><div class="project-icon">&#129302;</div><div class="project-title">Agentic Workflow Discovery &amp; Prototyping</div><div class="project-desc">Workshops to identify repetitive processes, design task-specific digital workers, and validate practical use cases with business teams.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-workforce">Workforce</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.32s"><div class="project-icon">&#128161;</div><div class="project-title">AI Value Narrative Creation</div><div class="project-desc">Enabled teams with a clear adoption journey from assistance to automation, with a value story tied to outcomes &mdash; not just time savings.</div><div class="project-tags"><span class="tag tag-workforce">Workforce</span><span class="tag tag-gtm2">GTM</span><span class="tag tag-agents">AI Agents</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.40s"><div class="project-icon">&#127919;</div><div class="project-title">Executive &amp; Ecosystem Engagement Program</div><div class="project-desc">Stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities.</div><div class="project-tags"><span class="tag tag-gtm2">GTM</span><span class="tag tag-workforce">Workforce</span><span class="tag tag-agents">AI Agents</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="container">
+    <div class="blog-header-row reveal">
+      <div>
+        <p class="section-eyebrow">// 04 &mdash; Inspiration</p>
+        <h2 class="section-title">Words worth Reading.</h2>
+      </div>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <a href="https://substack.com/@miguelvv" target="_blank" class="btn btn-outline">My Articles &#x2197;</a>
+        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn &#x2197;</a>
+      </div>
+    </div>
+    <div class="blog-tabs">
+      <button class="blog-tab active" onclick="filterCards('all',this)"><span class="tab-dot tab-dot-all"></span> All</button>
+      <button class="blog-tab" onclick="filterCards('my article',this)"><span class="tab-dot tab-dot-mine"></span> My Articles</button>
+      <button class="blog-tab" onclick="filterCards('book',this)"><span class="tab-dot tab-dot-book"></span> Books</button>
+    </div>
+    <div id="blog-loading">Loading<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span></div>
+    <div class="carousel-wrapper" id="carousel-wrapper">
+      <button class="carousel-btn" id="btn-left" onclick="scrollCarousel(-1)">&#8592;</button>
+      <div class="carousel-track" id="carousel-track"></div>
+      <button class="carousel-btn" id="btn-right" onclick="scrollCarousel(1)">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Miguel V&aacute;zquez Vicente</div>
+        <div class="footer-sub">Enterprise AI Business Exec &middot; Microsoft &middot; Madrid</div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+        <a href="https://substack.com/@miguelvv" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg> Substack</a>
+        <a href="mailto:miguelvazquezvicente@gmail.com" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</a>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2025 Miguel V&aacute;zquez Vicente &middot; Built with intention.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var SHEET="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRBIoLcmwyz7kPnkcG_7ykTtVtPBE41hZiaG4kMViyoLrq7PH8g4lmdJePmUSwJBKofgi0kgwqAtWC/pub?output=csv&gid=0";
+var allItems=[];
+var activeFilter="all";
+var els=document.querySelectorAll(".reveal");
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:0.1});
+els.forEach(function(el){obs.observe(el);});
+function splitLine(line){var res=[],cur="",inQ=false;for(var i=0;i<line.length;i++){var c=line[i];if(c==='"'){inQ=!inQ;}else if(c===","&&!inQ){res.push(cur.trim().replace(/^"|"$/g,""));cur="";}else{cur+=c;}}res.push(cur.trim().replace(/^"|"$/g,""));return res;}
+function parseCSV(text){var lines=text.split("\n");var hdrs=splitLine(lines[0]).map(function(h){return h.toLowerCase().trim();});var rows=[];for(var i=1;i<lines.length;i++){if(!lines[i].trim())continue;var cols=splitLine(lines[i]);var obj={};hdrs.forEach(function(h,j){obj[h]=(cols[j]||"").trim();});if(obj.title)rows.push(obj);}return rows;}
+function toDate(s){var d=new Date((s||"").replace(/"/g,"").trim());return isNaN(d.getTime())?new Date(0):d;}
+function cardCfg(type){var t=(type||"").toLowerCase().trim();if(t==="my article")return{cls:"card-myarticle",icon:"&#9998;",badge:"My Article"};if(t==="book")return{cls:"card-book",icon:"&#128214;",badge:"Book"};if(t==="linkedin"||t==="substack"||t==="linkedin/substack")return{cls:"card-social",icon:"&#128172;",badge:type};return{cls:"card-article",icon:"&#128240;",badge:"Article"};}
+function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function makeCard(item){var c=cardCfg(item.type);var url=(item.url||"").trim();if(url&&url.indexOf("http")!==0)url="https://"+url;var date=(item.date||"").replace(/"/g,"");return'<a href="'+url+'" target="_blank" rel="noopener" class="c-card '+c.cls+'"><div class="c-card-top"><span class="c-type-badge">'+c.badge+'</span><span class="c-card-icon">'+c.icon+'</span><div class="c-author">'+esc(item.author)+'</div><div class="c-title">'+esc(item.title)+'</div></div><div class="c-desc">'+esc(item.description)+'</div><div class="c-card-footer"><span class="c-date">'+date+'</span><span class="c-arrow">&rarr;</span></div></a>';}
+function syncBtns(){var track=document.getElementById("carousel-track");var bl=document.getElementById("btn-left");var br=document.getElementById("btn-right");if(!track)return;if(bl)bl.disabled=track.scrollLeft<=2;if(br)br.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-4;}
+function render(){var track=document.getElementById("carousel-track");var wrapper=document.getElementById("carousel-wrapper");if(!track||!wrapper)return;var list=activeFilter==="all"?allItems:allItems.filter(function(i){return(i.type||"").toLowerCase().trim()===activeFilter;});track.innerHTML=list.length?list.map(makeCard).join(""):'<div style="color:var(--muted);font-family:monospace;padding:2rem 0;font-size:.85rem">No items for this filter.</div>';wrapper.style.display="flex";syncBtns();}
+window.filterCards=function(filter,btn){activeFilter=filter;var tabs=document.querySelectorAll(".blog-tab");for(var i=0;i<tabs.length;i++)tabs[i].classList.remove("active");btn.classList.add("active");var track=document.getElementById("carousel-track");if(track)track.scrollLeft=0;render();};
+window.scrollCarousel=function(dir){var track=document.getElementById("carousel-track");if(track)track.scrollBy({left:dir*580,behavior:"smooth"});setTimeout(syncBtns,450);};
+function load(){fetch(SHEET).then(function(r){return r.text();}).then(function(text){var rows=parseCSV(text);rows.sort(function(a,b){return toDate(b.date)-toDate(a.date);});allItems=rows;var lo=document.getElementById("blog-loading");if(lo)lo.style.display="none";render();var track=document.getElementById("carousel-track");if(track)track.addEventListener("scroll",syncBtns);}).catch(function(){allItems=[{title:"Something Big is Happening",author:"Matt Shumer",type:"Article",url:"https://situational-awareness.ai/",description:"Worth reading to sharpen your intuition on how fast AI is really moving.",date:"February 2026"},{title:"From Experiment to Action in AI",author:"Miguel Vazquez",type:"My Article",url:"https://substack.com/home/post/p-165079551",description:"Two years of GenAI in enterprise: key lessons from experiment to real action.",date:"June 2025"},{title:"Situational Awareness",author:"L. Aschenbrenner",type:"Article",url:"https://situational-awareness.ai/",description:"Want to understand how AI models evolve? Start here. Ages well.",date:"June 2024"},{title:"The Lean Startup",author:"Eric Ries",type:"Book",url:"https://en.wikipedia.org/wiki/The_Lean_Startup",description:"Old but Gold. Must read for builders.",date:"September 2011"}];var lo=document.getElementById("blog-loading");if(lo)lo.style.display="none";render();});}
+load();
+})();
+</script>
+</body>
+</html>
