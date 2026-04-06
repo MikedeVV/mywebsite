@@ -3,1240 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Miguel Vázquez Vicente — Enterprise AI Sales @ Microsoft</title>
+<title>Miguel Vazquez Vicente - Enterprise AI @ Microsoft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #04090f;
-    --surface: #080f1a;
-    --surface2: #0d1a2e;
-    --border: rgba(0,180,216,0.12);
-    --accent: #00b4d8;
-    --accent2: #0077b6;
-    --accent3: #48cae4;
-    --text: #dde8f0;
-    --muted: #5a7a94;
-    --white: #f0f8ff;
-    --tag-ai: rgba(0,180,216,0.15);
-    --tag-gtm: rgba(0,119,182,0.18);
-    --tag-wf: rgba(72,202,228,0.13);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID BG ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,180,216,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,180,216,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 4rem;
-    background: rgba(4,9,15,0.82);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--white);
-    letter-spacing: 0.04em;
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2.5rem;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 5rem;
-    overflow: hidden;
-  }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    width: 100%;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.1s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 5vw, 4.8rem);
-    font-weight: 800;
-    line-height: 1.06;
-    color: var(--white);
-    margin-bottom: 1.4rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.25s forwards;
-  }
-
-  .hero-title .line2 {
-    display: block;
-    color: var(--accent);
-  }
-
-  .hero-role {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 1.6rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.4s forwards;
-  }
-
-  .hero-role strong { color: var(--accent3); font-weight: 400; }
-
-  .hero-bio {
-    font-size: 1.02rem;
-    color: var(--text);
-    opacity: 0.85;
-    max-width: 480px;
-    margin-bottom: 2.4rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.55s forwards;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.7s forwards;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.6rem;
-    border-radius: 4px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #04090f;
-    font-weight: 600;
-  }
-
-  .btn-primary:hover {
-    background: var(--accent3);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0,180,216,0.3);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-
-  .btn-outline:hover {
-    background: rgba(0,180,216,0.08);
-    transform: translateY(-1px);
-  }
-
-  /* HERO STATS CARD */
-  .hero-stats {
-    opacity: 0;
-    animation: fadeIn 0.9s 0.9s forwards;
-  }
-
-  .stats-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2.4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stats-card::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(0,180,216,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .stat-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.6rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .stat-item {}
-
-  .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .stat-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.4rem 0;
-  }
-
-  .stack-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  /* -- EXPERIENCE BAR -- */
-  .exp-bar-block { margin-bottom: 0.2rem; }
-
-  .exp-bar-title-block {
-    margin-bottom: 1rem;
-  }
-
-  .exp-bar-headline {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .exp-bar-inline-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 0.01em;
-  }
-
-  .exp-bar-subtitle {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--white);
-    letter-spacing: 0.04em;
-    margin-top: 0.1rem;
-    opacity: 0.75;
-  }
-
-  .exp-bar-track {
-    position: relative;
-    height: 8px;
-    background: var(--surface2);
-    border-radius: 99px;
-    overflow: visible;
-    margin-bottom: 0.55rem;
-  }
-
-  .exp-bar-fill-base {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 100%;
-    background: rgba(0,180,216,0.18);
-    border-radius: 99px;
-  }
-
-  .exp-bar-fill-ai {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 0%;
-    background: linear-gradient(90deg, rgba(0,180,216,0.5), var(--accent));
-    border-radius: 99px;
-    box-shadow: 0 0 10px rgba(0,180,216,0.3);
-    animation: growAI 1.4s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
-  }
-
-  @keyframes growAI {
-    to { width: 40%; }
-  }
-
-  .exp-bar-marker {
-    position: absolute;
-    left: 40%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .exp-bar-marker::before {
-    content: '';
-    display: block;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--bg);
-    box-shadow: 0 0 0 2px var(--accent);
-    margin: 0 auto 4px;
-    animation: pulseMarker 2s 2s ease infinite;
-  }
-
-  @keyframes pulseMarker {
-    0%, 100% { box-shadow: 0 0 0 2px var(--accent); }
-    50% { box-shadow: 0 0 0 5px rgba(0,180,216,0.2); }
-  }
-
-  .exp-bar-marker-label {
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    color: var(--accent3);
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-    opacity: 0;
-    animation: fadeIn 0.5s 2s forwards;
-  }
-
-  .exp-bar-legend {
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-    margin-top: 1.6rem;
-  }
-
-  .exp-legend-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 0.3rem;
-  }
-
-  .dot-tech { background: rgba(0,180,216,0.4); border: 1px solid rgba(0,180,216,0.5); }
-  .dot-ai   { background: var(--accent); box-shadow: 0 0 6px rgba(0,180,216,0.4); }
-
-  .exp-legend-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-
-  /* -- INDUSTRY ICONS -- */
-  .industry-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-  }
-
-  .industry-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.65rem 0.3rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: rgba(0,180,216,0.03);
-    transition: all 0.2s;
-  }
-
-  .industry-item:hover {
-    border-color: rgba(0,180,216,0.3);
-    background: rgba(0,180,216,0.07);
-  }
-
-  .industry-icon { font-size: 1.25rem; line-height: 1; }
-
-  .industry-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-align: center;
-    line-height: 1.3;
-  }
-
-  /* -- OPERATING STACK LAYERS -- */
-  .stack-layers {
-    display: flex;
-    flex-direction: column;
-    gap: 0.28rem;
-    margin-top: 0.4rem;
-  }
-
-  .stack-layer {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stack-layer::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 2.5px;
-    border-radius: 2px 0 0 2px;
-  }
-
-  .stack-layer:hover { transform: translateX(3px); }
-
-  .layer-0  { background: rgba(239,68,68,0.07);   border-color: rgba(239,68,68,0.18); }
-  .layer-0::before  { background: #ef4444; }
-  .layer-1  { background: rgba(249,115,22,0.07);  border-color: rgba(249,115,22,0.18); }
-  .layer-1::before  { background: #f97316; }
-  .layer-2  { background: rgba(234,179,8,0.07);   border-color: rgba(234,179,8,0.18); }
-  .layer-2::before  { background: #eab308; }
-  .layer-3  { background: rgba(34,197,94,0.07);   border-color: rgba(34,197,94,0.18); }
-  .layer-3::before  { background: #22c55e; }
-  .layer-4  { background: rgba(0,180,216,0.07);   border-color: rgba(0,180,216,0.18); }
-  .layer-4::before  { background: var(--accent); }
-  .layer-5  { background: rgba(139,92,246,0.07);  border-color: rgba(139,92,246,0.18); }
-  .layer-5::before  { background: #8b5cf6; }
-  .layer-6  { background: rgba(236,72,153,0.07);  border-color: rgba(236,72,153,0.18); }
-  .layer-6::before  { background: #ec4899; }
-
-  .layer-icon { font-size: 0.9rem; flex-shrink: 0; width: 18px; text-align: center; }
-  .layer-content { flex: 1; min-width: 0; }
-
-  .layer-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.54rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    opacity: 0.6;
-  }
-
-  .layer-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.67rem;
-    color: var(--text);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .layer-sub {
-    font-size: 0.58rem;
-    color: var(--muted);
-    opacity: 0.7;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.25rem 0.7rem;
-    border-radius: 20px;
-    letter-spacing: 0.05em;
-  }
-
-  .tag-blue { background: var(--tag-ai); color: var(--accent); border: 1px solid rgba(0,180,216,0.2); }
-  .tag-dark { background: var(--tag-gtm); color: var(--accent3); border: 1px solid rgba(72,202,228,0.2); }
-  .tag-dim { background: rgba(90,122,148,0.12); color: var(--muted); border: 1px solid rgba(90,122,148,0.2); }
-
-  /* ── SECTION HEADER ── */
-  .section-header {
-    margin-bottom: 3.5rem;
-  }
-
-  .section-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1.1;
-  }
-
-  /* ── ABOUT / RESUME ── */
-  #about {
-    padding: 7rem 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-left {}
-
-  .motto {
-    font-family: 'DM Mono', monospace;
-    font-style: italic;
-    font-size: 0.88rem;
-    color: var(--accent3);
-    line-height: 1.6;
-    padding: 1.2rem 1.4rem;
-    border-left: 3px solid var(--accent);
-    background: rgba(0,180,216,0.04);
-    border-radius: 0 6px 6px 0;
-    margin-top: 2rem;
-  }
-
-  .skills-block {
-    margin-top: 2.5rem;
-  }
-
-  .skills-block h4 {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
-
-  .skill-bar-item {
-    margin-bottom: 1rem;
-  }
-
-  .skill-bar-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.82rem;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .skill-bar-label span:last-child {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
-
-  .skill-bar-track {
-    height: 3px;
-    background: var(--surface2);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .skill-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 2px;
-    transform-origin: left;
-    animation: barGrow 1s ease forwards;
-    transform: scaleX(0);
-  }
-
-  @keyframes barGrow {
-    to { transform: scaleX(1); }
-  }
-
-  .lang-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
-  }
-
-  /* EXPERIENCE */
-  .timeline {
-    position: relative;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 8px;
-    bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 1.2rem;
-    margin-bottom: 2.6rem;
-  }
-
-  .exp-dot {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .exp-dot-inner {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .exp-dot.dim { border-color: var(--muted); }
-  .exp-dot.dim .exp-dot-inner { background: var(--muted); }
-
-  .exp-content {}
-
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .exp-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .exp-period {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  .exp-company {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
-  }
-
-  .exp-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* EDUCATION */
-  .edu-grid {
-    display: grid;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .edu-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.2rem 1.4rem;
-  }
-
-  .edu-degree {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.2rem;
-  }
-
-  .edu-school {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent3);
-  }
-
-  .edu-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 0.2rem;
-  }
-
-  /* ── PROJECTS ── */
-  #projects {
-    padding: 7rem 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.4rem;
-  }
-
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.8rem;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .project-card:hover {
-    border-color: rgba(0,180,216,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-  }
-
-  .project-card:hover::after { transform: scaleX(1); }
-
-  .project-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: rgba(0,180,216,0.1);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-  }
-
-  .project-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.6rem;
-    line-height: 1.3;
-  }
-
-  .project-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .tag-agents { background: rgba(0,180,216,0.12); color: #48cae4; border: 1px solid rgba(72,202,228,0.2); }
-  .tag-gtm2 { background: rgba(0,119,182,0.14); color: #90e0ef; border: 1px solid rgba(144,224,239,0.2); }
-  .tag-workforce { background: rgba(2,62,138,0.2); color: #a8dadc; border: 1px solid rgba(168,218,220,0.15); }
-
-  /* ── BLOG ── */
-  #blog {
-    padding: 7rem 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .blog-header-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .blog-tabs {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .blog-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    transition: all 0.2s;
-  }
-
-  .blog-tab:hover { border-color: var(--accent); color: var(--accent); }
-  .blog-tab.active { background: var(--accent); border-color: var(--accent); color: #04090f; font-weight: 600; }
-
-  .tab-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
-  .tab-dot-all { background: var(--accent3); }
-  .tab-dot-article { background: #f4a261; }
-  .tab-dot-post { background: #0ea5e9; }
-  .blog-tab.active .tab-dot { opacity: 0.6; }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.4rem;
-  }
-
-  .blog-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.25s;
-    text-decoration: none;
-    display: block;
-  }
-
-  .blog-card:hover {
-    border-color: rgba(0,180,216,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-  }
-
-  .blog-card-top { padding: 1.6rem 1.6rem 1rem; }
-
-  .blog-card-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    margin-bottom: 0.6rem;
-  }
-
-  .blog-card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.02rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.35;
-    margin-bottom: 0.6rem;
-  }
-
-  .blog-card-excerpt { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
-
-  .blog-card-footer {
-    padding: 0.9rem 1.6rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .blog-source {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .source-article { color: #f4a261; }
-  .source-post { color: #0ea5e9; }
-
-  .source-badge { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
-  .badge-article { background: #f4a261; }
-  .badge-post { background: #0ea5e9; }
-
-  .blog-arrow { color: var(--muted); font-size: 0.9rem; transition: transform 0.2s, color 0.2s; }
-  .blog-card:hover .blog-arrow { transform: translateX(4px); color: var(--accent); }
-
-  /* LinkedIn Post Card */
-  .li-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.25s;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .li-card:hover {
-    border-color: rgba(14,165,233,0.35);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-  }
-
-  .li-card-header {
-    padding: 1.1rem 1.4rem 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .li-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: #04090f;
-    flex-shrink: 0;
-  }
-
-  .li-author-name { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--white); }
-  .li-author-role { font-family: 'DM Mono', monospace; font-size: 0.64rem; color: var(--muted); }
-
-  .li-card-body { padding: 1.2rem 1.4rem; flex: 1; }
-
-  .li-post-text { font-size: 0.86rem; color: var(--text); line-height: 1.75; white-space: pre-line; }
-
-  .li-card-footer {
-    padding: 0.75rem 1.4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .li-stats { display: flex; gap: 1rem; }
-
-  .li-stat {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .li-date { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); opacity: 0.6; }
-
-  .li-comments {
-    background: var(--surface2);
-    border-top: 1px solid var(--border);
-    padding: 0.9rem 1.4rem;
-  }
-
-  .li-comments-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 0.7rem;
-    opacity: 0.7;
-  }
-
-  .li-comment { display: flex; gap: 0.6rem; margin-bottom: 0.75rem; }
-  .li-comment:last-child { margin-bottom: 0; }
-
-  .li-comment-avatar {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.62rem;
-    color: var(--accent3);
-    flex-shrink: 0;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-  }
-
-  .li-comment-name { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent3); margin-bottom: 0.15rem; }
-  .li-comment-text { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-  #blog-loading {
-    text-align: center;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    padding: 3rem;
-    letter-spacing: 0.06em;
-  }
-
-  .loading-dot { display: inline-block; animation: blink 1.2s infinite; }
-  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes blink {
-    0%, 80%, 100% { opacity: 0.2; }
-    40% { opacity: 1; }
-  }
-
-  .hidden { display: none !important; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 4rem 0 3rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .footer-left {}
-
-  .footer-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-  }
-
-  .footer-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    transition: all 0.2s;
-  }
-
-  .social-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(0,180,216,0.05);
-  }
-
-  .footer-copy {
-    text-align: center;
-    margin-top: 3rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    opacity: 0.6;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* ── LANG TOGGLE ── */
-  .lang-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    margin-left: 2rem;
-  }
-
-  .lang-btn {
-    background: none;
-    border: 1px solid transparent;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0.22rem 0.55rem;
-    border-radius: 3px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    line-height: 1;
-  }
-
-  .lang-btn.active {
-    color: var(--accent);
-    border-color: rgba(0,180,216,0.4);
-    background: rgba(0,180,216,0.06);
-  }
-
-  .lang-btn:hover:not(.active) {
-    color: var(--text);
-    border-color: var(--border);
-  }
-
-  .lang-sep {
-    color: var(--border);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    user-select: none;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-stats { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  }
-
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .container { padding: 0 1.2rem; }
-    .stat-row { grid-template-columns: 1fr 1fr; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-    .social-links { flex-wrap: wrap; }
-  }
+:root{--bg:#04090f;--surface:#080f1a;--surface2:#0d1a2e;--border:rgba(0,180,216,0.12);--accent:#00b4d8;--accent2:#0077b6;--accent3:#48cae4;--text:#dde8f0;--muted:#5a7a94;--white:#f0f8ff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,180,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;background:rgba(4,9,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+section{position:relative;z-index:1}
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:#04090f;font-weight:600}
+.btn-primary:hover{background:var(--accent3);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,180,216,.3)}
+.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-outline:hover{background:rgba(0,180,216,.08);transform:translateY(-1px)}
+.tag{font-family:'DM Mono',monospace;font-size:.7rem;padding:.25rem .7rem;border-radius:20px;letter-spacing:.05em}
+.tag-blue{background:rgba(0,180,216,.15);color:var(--accent);border:1px solid rgba(0,180,216,.2)}
+.tag-dark{background:rgba(0,119,182,.18);color:var(--accent3);border:1px solid rgba(72,202,228,.2)}
+.tag-dim{background:rgba(90,122,148,.12);color:var(--muted);border:1px solid rgba(90,122,148,.2)}
+.tag-agents{background:rgba(0,180,216,.12);color:#48cae4;border:1px solid rgba(72,202,228,.2)}
+.tag-gtm2{background:rgba(0,119,182,.14);color:#90e0ef;border:1px solid rgba(144,224,239,.2)}
+.tag-workforce{background:rgba(2,62,138,.2);color:#a8dadc;border:1px solid rgba(168,218,220,.15)}
+.section-header{margin-bottom:3.5rem}
+.section-eyebrow{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--white);line-height:1.1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+@keyframes growAI{to{width:40%}}
+@keyframes barGrow{to{transform:scaleX(1)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:800;line-height:1.06;color:var(--white);margin-bottom:1.4rem;opacity:0;animation:fadeUp .7s .25s forwards}
+.hero-title .line2{display:block;color:var(--accent)}
+.hero-role{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--muted);margin-bottom:1.6rem;opacity:0;animation:fadeUp .7s .4s forwards}
+.hero-role strong{color:var(--accent3);font-weight:400}
+.hero-bio{font-size:1.02rem;color:var(--text);max-width:480px;margin-bottom:2.4rem;opacity:0;animation:fadeUp .7s .55s forwards}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .7s forwards}
+.hero-stats{opacity:0;animation:fadeIn .9s .9s forwards}
+.stats-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.4rem;position:relative;overflow:hidden}
+.stats-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,180,216,.12) 0%,transparent 70%);pointer-events:none}
+.stat-value{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.3rem}
+.stat-label{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.stat-divider{height:1px;background:var(--border);margin:1.4rem 0}
+.exp-bar-block{margin-bottom:.2rem}
+.exp-bar-headline{display:flex;align-items:baseline;gap:.55rem;margin-bottom:.25rem}
+.exp-bar-inline-label{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white)}
+.exp-bar-subtitle{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--white);opacity:.75;margin-bottom:1rem}
+.exp-bar-track{position:relative;height:8px;background:var(--surface2);border-radius:99px;margin-bottom:.55rem}
+.exp-bar-fill-base{position:absolute;left:0;top:0;bottom:0;width:100%;background:rgba(0,180,216,.18);border-radius:99px}
+.exp-bar-fill-ai{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,rgba(0,180,216,.5),var(--accent));border-radius:99px;box-shadow:0 0 10px rgba(0,180,216,.3);animation:growAI 1.4s .6s cubic-bezier(.16,1,.3,1) forwards}
+.exp-bar-legend{display:flex;gap:1.2rem;align-items:center;margin-top:1.2rem}
+.exp-legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:.3rem}
+.dot-tech{background:rgba(0,180,216,.4);border:1px solid rgba(0,180,216,.5)}
+.dot-ai{background:var(--accent);box-shadow:0 0 6px rgba(0,180,216,.4)}
+.exp-legend-text{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em}
+.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.4rem}
+.industry-item{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.65rem .3rem;border:1px solid var(--border);border-radius:8px;background:rgba(0,180,216,.03);transition:all .2s}
+.industry-item:hover{border-color:rgba(0,180,216,.3);background:rgba(0,180,216,.07)}
+.industry-icon{font-size:1.25rem;line-height:1}
+.industry-label{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.3}
+.stack-layers{display:flex;flex-direction:column;gap:.28rem;margin-top:.4rem}
+.stack-layer{display:flex;align-items:center;gap:.65rem;padding:.5rem .75rem;border-radius:6px;border:1px solid transparent;transition:transform .2s;position:relative;overflow:hidden}
+.stack-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;border-radius:2px 0 0 2px}
+.stack-layer:hover{transform:translateX(3px)}
+.layer-0{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.18)}.layer-0::before{background:#ef4444}
+.layer-1{background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.18)}.layer-1::before{background:#f97316}
+.layer-2{background:rgba(234,179,8,.07);border-color:rgba(234,179,8,.18)}.layer-2::before{background:#eab308}
+.layer-3{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.18)}.layer-3::before{background:#22c55e}
+.layer-4{background:rgba(0,180,216,.07);border-color:rgba(0,180,216,.18)}.layer-4::before{background:var(--accent)}
+.layer-5{background:rgba(139,92,246,.07);border-color:rgba(139,92,246,.18)}.layer-5::before{background:#8b5cf6}
+.layer-6{background:rgba(236,72,153,.07);border-color:rgba(236,72,153,.18)}.layer-6::before{background:#ec4899}
+.layer-icon{font-size:.9rem;flex-shrink:0;width:18px;text-align:center}
+.layer-content{flex:1;min-width:0}
+.layer-num{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--muted);letter-spacing:.08em;opacity:.6}
+.layer-name{font-family:'DM Mono',monospace;font-size:.67rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.layer-sub{font-size:.58rem;color:var(--muted);opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#about{padding:7rem 0;border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start}
+.motto{font-family:'DM Mono',monospace;font-style:italic;font-size:.88rem;color:var(--accent3);line-height:1.6;padding:1.2rem 1.4rem;border-left:3px solid var(--accent);background:rgba(0,180,216,.04);border-radius:0 6px 6px 0;margin-top:2rem}
+.skills-block{margin-top:2.5rem}
+.skills-block h4{font-family:'DM Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1rem}
+.skill-bar-item{margin-bottom:1rem}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:.82rem;color:var(--text);margin-bottom:.4rem}
+.skill-bar-label span:last-child{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+.skill-bar-track{height:3px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;transform-origin:left;animation:barGrow 1s ease forwards;transform:scaleX(0)}
+.lang-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.edu-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.edu-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem}
+.edu-degree{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.edu-school{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)}
+.edu-year{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:11px;top:8px;bottom:0;width:1px;background:var(--border)}
+.exp-item{display:grid;grid-template-columns:24px 1fr;gap:1.2rem;margin-bottom:2.6rem}
+.exp-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.exp-dot-inner{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.exp-dot.dim{border-color:var(--muted)}.exp-dot.dim .exp-dot-inner{background:var(--muted)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.3rem;margin-bottom:.2rem}
+.exp-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white)}
+.exp-period{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);white-space:nowrap}
+.exp-company{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--accent);margin-bottom:.6rem}
+.exp-desc{font-size:.9rem;color:var(--muted);line-height:1.65}
+#projects{padding:7rem 0;border-top:1px solid var(--border)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.8rem;transition:all .25s;position:relative;overflow:hidden}
+.project-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.project-card:hover{border-color:rgba(0,180,216,.3);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.project-card:hover::after{transform:scaleX(1)}
+.project-icon{width:36px;height:36px;border-radius:8px;background:rgba(0,180,216,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1rem}
+.project-title{font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700;color:var(--white);margin-bottom:.6rem;line-height:1.3}
+.project-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+#blog{padding:7rem 0;border-top:1px solid var(--border)}
+.blog-header-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.blog-tabs{display:flex;align-items:center;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.blog-tab{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;border-radius:20px;font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .2s}
+.blog-tab:hover{border-color:var(--accent);color:var(--accent)}
+.blog-tab.active{background:var(--accent);border-color:var(--accent);color:#04090f;font-weight:600}
+.tab-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.tab-dot-all{background:var(--accent3)}.tab-dot-mine{background:var(--accent)}.tab-dot-book{background:#10b981}
+.blog-tab.active .tab-dot{opacity:.6}
+#blog-loading{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--muted);padding:3rem 0}
+.loading-dot{display:inline-block;animation:blink 1.2s infinite}
+.loading-dot:nth-child(2){animation-delay:.2s}.loading-dot:nth-child(3){animation-delay:.4s}
+.carousel-wrapper{display:none;position:relative;align-items:center;gap:.8rem}
+.carousel-track{display:flex;gap:1.2rem;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:.5rem 0 1.5rem;flex:1;-ms-overflow-style:none}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-btn{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.carousel-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.07)}
+.carousel-btn:disabled{opacity:.25;cursor:default}
+.c-card{flex:0 0 272px;border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;position:relative}
+.c-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.c-type-badge{position:absolute;top:.9rem;right:.9rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .6rem;border-radius:20px}
+.c-card-top{padding:1.4rem 1.2rem 1rem;flex:1}
+.c-card-icon{font-size:1.4rem;display:block;margin-bottom:.5rem}
+.c-author{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem}
+.c-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:.4rem}
+.c-desc{font-size:.8rem;color:var(--muted);line-height:1.6;padding:0 1.2rem 1rem}
+.c-card-footer{padding:.75rem 1.2rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
+.c-date{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)}
+.c-arrow{font-size:.9rem;transition:transform .2s}.c-card:hover .c-arrow{transform:translateX(4px)}
+.card-myarticle{background:var(--surface);border:1px solid rgba(0,180,216,.25)}
+.card-myarticle .c-card-top{background:linear-gradient(135deg,rgba(0,119,182,.28) 0%,rgba(0,180,216,.06) 100%);border-bottom:1px solid rgba(0,180,216,.12)}
+.card-myarticle .c-type-badge{background:rgba(0,180,216,.15);color:var(--accent);border:1px solid rgba(0,180,216,.25)}
+.card-myarticle .c-card-icon,.card-myarticle .c-arrow{color:var(--accent)}
+.card-article{background:var(--surface);border:1px solid rgba(251,191,36,.18)}
+.card-article .c-card-top{background:linear-gradient(135deg,rgba(180,83,9,.22) 0%,rgba(251,191,36,.04) 100%);border-bottom:1px solid rgba(251,191,36,.1)}
+.card-article .c-type-badge{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.card-article .c-card-icon{color:#f59e0b}.card-article .c-arrow{color:#fbbf24}
+.card-book{background:var(--surface);border:1px solid rgba(16,185,129,.18)}
+.card-book .c-card-top{background:linear-gradient(135deg,rgba(6,78,59,.32) 0%,rgba(16,185,129,.05) 100%);border-bottom:1px solid rgba(16,185,129,.1)}
+.card-book .c-type-badge{background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.2)}
+.card-book .c-card-icon{color:#34d399}.card-book .c-arrow{color:#34d399}
+.card-social{background:var(--surface);border:1px solid rgba(99,102,241,.18)}
+.card-social .c-card-top{background:linear-gradient(135deg,rgba(49,46,129,.32) 0%,rgba(99,102,241,.06) 100%);border-bottom:1px solid rgba(99,102,241,.1)}
+.card-social .c-type-badge{background:rgba(99,102,241,.12);color:#818cf8;border:1px solid rgba(99,102,241,.2)}
+.card-social .c-card-icon,.card-social .c-arrow{color:#818cf8}
+footer{border-top:1px solid var(--border);padding:4rem 0 3rem;position:relative;z-index:1}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+.footer-name{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);margin-bottom:.3rem}
+.footer-sub{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+.social-links{display:flex;gap:1rem;flex-wrap:wrap}
+.social-link{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;border:1px solid var(--border);border-radius:6px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.06em;transition:all .2s}
+.social-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,180,216,.05)}
+.footer-copy{text-align:center;margin-top:3rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);opacity:.6}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}.about-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:600px){.nav-links{display:none}.container{padding:0 1.2rem}.footer-inner{flex-direction:column;align-items:flex-start}}
+.lang-toggle{display:flex;align-items:center;gap:.2rem;margin-left:2rem}
+.lang-btn{background:none;border:1px solid transparent;color:var(--muted);cursor:pointer;padding:.22rem .55rem;border-radius:3px;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;line-height:1}
+.lang-btn.active{color:var(--accent);border-color:rgba(0,180,216,.4);background:rgba(0,180,216,.06)}
+.lang-btn:hover:not(.active){color:var(--text);border-color:var(--border)}
+.lang-sep{color:var(--border);font-family:'DM Mono',monospace;font-size:.7rem;user-select:none}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">MV<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav-about">About</a></li>
     <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
-    <li><a href="#blog" data-i18n="nav-writing">Writing</a></li>
-    <li><a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank">LinkedIn ↗</a></li>
+    <li><a href="#blog" data-i18n="nav-inspiration">Inspiration</a></li>
+    <li><a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank">LinkedIn &#x2197;</a></li>
   </ul>
   <div class="lang-toggle">
     <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
@@ -1245,34 +207,28 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
-      <div class="hero-left">
-        <p class="hero-eyebrow" data-i18n="hero-eyebrow">// Enterprise AI · Madrid, Spain</p>
+      <div>
+        <p class="hero-eyebrow" data-i18n="hero-eyebrow">// Enterprise AI &middot; Madrid, Spain</p>
         <h1 class="hero-title" data-i18n="hero-title">Hey, I'm<br><span class="line2">Miguel.</span></h1>
-        <p class="hero-role" data-i18n="hero-role"><strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Professional Lecturer · @AI Advisor</p>
-        <p class="hero-bio" data-i18n="hero-bio">Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments, orchestrate cross-functional teams, and turn full-stack AI strategy into measurable outcomes.</p>
+        <p class="hero-role" data-i18n="hero-role"><strong>Enterprise AI Business Exec</strong><br>@ Microsoft &nbsp;&middot;&nbsp; @Professional Lecturer &nbsp;&middot;&nbsp; @AI Advisor</p>
+        <p class="hero-bio" data-i18n="hero-bio">Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments and turn full-stack AI strategy into measurable outcomes.</p>
         <div class="hero-cta">
-          <a href="#about" class="btn btn-primary" data-i18n="btn-resume">View Resume →</a>
-          <a href="#blog" class="btn btn-outline" data-i18n="btn-writing">Read My Writing</a>
-          <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+          <a href="#about" class="btn btn-primary" data-i18n="btn-resume">View Resume &rarr;</a>
+          <a href="#blog" class="btn btn-outline" data-i18n="btn-inspiration">Inspiration Ideas</a>
+          <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn &#x2197;</a>
         </div>
       </div>
-
       <div class="hero-stats">
         <div class="stats-card">
-
-          <!-- Experience bar -->
           <div class="exp-bar-block">
-            <div class="exp-bar-title-block">
-              <div class="exp-bar-headline">
-                <span class="stat-value" style="color:var(--white);">10+</span>
-                <span class="exp-bar-inline-label" data-i18n="stat-tech-label">Years in Tech</span>
-              </div>
-              <div class="exp-bar-subtitle" data-i18n="stat-ai-subtitle">4 in AI Tech Ecosystem</div>
+            <div class="exp-bar-headline">
+              <span class="stat-value" style="color:var(--white)">10+</span>
+              <span class="exp-bar-inline-label" data-i18n="stat-tech-label">Years in Tech</span>
             </div>
+            <div class="exp-bar-subtitle" data-i18n="stat-ai-subtitle">4 in AI Tech Ecosystem</div>
             <div class="exp-bar-track">
               <div class="exp-bar-fill-base"></div>
               <div class="exp-bar-fill-ai"></div>
@@ -1282,99 +238,24 @@
               <span class="exp-legend-dot dot-ai"></span><span class="exp-legend-text" data-i18n="legend-ai">AI Tech Ecosystem</span>
             </div>
           </div>
-
           <div class="stat-divider"></div>
-
-          <!-- Industry expertise -->
-          <div class="stat-label" style="margin-bottom:0.6rem;" data-i18n="stat-industry">Industry Expertise</div>
+          <div class="stat-label" style="margin-bottom:.6rem" data-i18n="stat-industry">Industry Expertise</div>
           <div class="industry-grid">
-            <div class="industry-item">
-              <span class="industry-icon">📡</span>
-              <span class="industry-label" data-i18n="ind-telco">Telco</span>
-            </div>
-            <div class="industry-item">
-              <span class="industry-icon">⛽</span>
-              <span class="industry-label" data-i18n="ind-resources">Resources</span>
-            </div>
-            <div class="industry-item">
-              <span class="industry-icon">🏭</span>
-              <span class="industry-label" data-i18n="ind-manufacturing">Manufac&shy;turing</span>
-            </div>
-            <div class="industry-item">
-              <span class="industry-icon">🏗️</span>
-              <span class="industry-label" data-i18n="ind-construction">Construc&shy;tion</span>
-            </div>
+            <div class="industry-item"><span class="industry-icon">&#128225;</span><span class="industry-label" data-i18n="ind-telco">Telco</span></div>
+            <div class="industry-item"><span class="industry-icon">&#9981;</span><span class="industry-label" data-i18n="ind-resources">Resources</span></div>
+            <div class="industry-item"><span class="industry-icon">&#127981;</span><span class="industry-label" data-i18n="ind-manufacturing">Manufacturing</span></div>
+            <div class="industry-item"><span class="industry-icon">&#127959;</span><span class="industry-label" data-i18n="ind-construction">Construction</span></div>
           </div>
-
           <div class="stat-divider"></div>
-
-          <!-- Operating Stack -->
-          <div class="stat-label" style="margin-bottom:0.6rem;" data-i18n="stat-stack">Operating Stack (End&#8209;to&#8209;End)</div>
+          <div class="stat-label" style="margin-bottom:.6rem" data-i18n="stat-stack">Operating Stack (End&#8209;to&#8209;End)</div>
           <div class="stack-layers">
-
-            <div class="stack-layer layer-0">
-              <span class="layer-icon">⚖️</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 0</div>
-                <div class="layer-name" data-i18n="layer-0-name">Regulation & Policy</div>
-                <div class="layer-sub">AI Act · GDPR · Responsible AI</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-1">
-              <span class="layer-icon">🛡️</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 1</div>
-                <div class="layer-name" data-i18n="layer-1-name">Govern · Secure · Observe</div>
-                <div class="layer-sub">Agent365 · Security Platforms</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-2">
-              <span class="layer-icon">🗄️</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 2</div>
-                <div class="layer-name" data-i18n="layer-2-name">Enterprise Knowledge & Data</div>
-                <div class="layer-sub">Connectors · Grounding · Retrieval</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-3">
-              <span class="layer-icon">🧠</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 3</div>
-                <div class="layer-name" data-i18n="layer-3-name">Model Layer (LLMs)</div>
-                <div class="layer-sub">Azure OpenAI · AI Foundry · Model Agnostic</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-4">
-              <span class="layer-icon">🤖</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 4</div>
-                <div class="layer-name" data-i18n="layer-4-name">Orchestration & Agent Runtime</div>
-                <div class="layer-sub">AI Agents · Copilot · Cowork</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-5">
-              <span class="layer-icon">🛠️</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 5</div>
-                <div class="layer-name" data-i18n="layer-5-name">Build Studio (Low&#8209;code → Pro&#8209;code)</div>
-                <div class="layer-sub">Copilot Studio · VS / GitHub · Vibe Coding</div>
-              </div>
-            </div>
-
-            <div class="stack-layer layer-6">
-              <span class="layer-icon">🚀</span>
-              <div class="layer-content">
-                <div class="layer-num">LAYER 6</div>
-                <div class="layer-name" data-i18n="layer-6-name">Adopt · Operate · Monetize</div>
-                <div class="layer-sub">CoE Design · Change Mgmt · GTM Strategy</div>
-              </div>
-            </div>
-
+            <div class="stack-layer layer-0"><span class="layer-icon">&#9878;</span><div class="layer-content"><div class="layer-num">LAYER 0</div><div class="layer-name" data-i18n="layer-0-name">Regulation &amp; Policy</div><div class="layer-sub">AI Act &middot; GDPR &middot; Responsible AI</div></div></div>
+            <div class="stack-layer layer-1"><span class="layer-icon">&#128737;</span><div class="layer-content"><div class="layer-num">LAYER 1</div><div class="layer-name" data-i18n="layer-1-name">Govern &middot; Secure &middot; Observe</div><div class="layer-sub">Agent365 &middot; Security Platforms</div></div></div>
+            <div class="stack-layer layer-2"><span class="layer-icon">&#128452;</span><div class="layer-content"><div class="layer-num">LAYER 2</div><div class="layer-name" data-i18n="layer-2-name">Enterprise Knowledge &amp; Data</div><div class="layer-sub">Connectors &middot; Grounding &middot; Retrieval</div></div></div>
+            <div class="stack-layer layer-3"><span class="layer-icon">&#129504;</span><div class="layer-content"><div class="layer-num">LAYER 3</div><div class="layer-name" data-i18n="layer-3-name">Model Layer (LLMs)</div><div class="layer-sub">Azure OpenAI &middot; AI Foundry &middot; Model Agnostic</div></div></div>
+            <div class="stack-layer layer-4"><span class="layer-icon">&#129302;</span><div class="layer-content"><div class="layer-num">LAYER 4</div><div class="layer-name" data-i18n="layer-4-name">Orchestration &amp; Agent Runtime</div><div class="layer-sub">AI Agents &middot; Copilot &middot; Cowork</div></div></div>
+            <div class="stack-layer layer-5"><span class="layer-icon">&#128736;</span><div class="layer-content"><div class="layer-num">LAYER 5</div><div class="layer-name" data-i18n="layer-5-name">Build Studio (Low&#8209;code &#8594; Pro&#8209;code)</div><div class="layer-sub">Copilot Studio &middot; VS / GitHub &middot; Vibe Coding</div></div></div>
+            <div class="stack-layer layer-6"><span class="layer-icon">&#128640;</span><div class="layer-content"><div class="layer-num">LAYER 6</div><div class="layer-name" data-i18n="layer-6-name">Adopt &middot; Operate &middot; Monetize</div><div class="layer-sub">CoE Design &middot; Change Mgmt &middot; GTM Strategy</div></div></div>
           </div>
         </div>
       </div>
@@ -1382,698 +263,294 @@
   </div>
 </section>
 
-<!-- ABOUT / RESUME -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
-      <!-- LEFT -->
-      <div class="about-left reveal">
+      <div class="reveal">
         <div class="section-header">
-          <p class="section-eyebrow" data-i18n="about-eyebrow">// 01 — About</p>
+          <p class="section-eyebrow" data-i18n="about-eyebrow">// 01 &mdash; About</p>
           <h2 class="section-title" data-i18n="about-title">The person behind the pitch.</h2>
         </div>
-        <p style="font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:1rem;" data-i18n="about-bio">Industrial Engineer turned Enterprise AI Sales. I started my career at Vodafone — from Key Account to Product Marketing — then co-founded a sustainable mobility startup, and eventually landed at Microsoft, where I now help Spain's largest enterprises build AI strategies that actually move the needle.</p>
-        <div class="motto" data-i18n="about-motto">"Leave things better than you found them—and enjoy doing it."</div>
-
-        <div class="skills-block" style="margin-top:2.5rem;">
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.75;margin-bottom:1rem" data-i18n="about-bio">Industrial Engineer turned Enterprise AI Sales. From Vodafone Key Account to Product Marketing, to co-founding a sustainable mobility startup, to Microsoft &mdash; where I help Spain&rsquo;s largest enterprises build AI strategies that actually move the needle.</p>
+        <div class="motto" data-i18n="about-motto">&ldquo;Leave things better than you found them&mdash;and enjoy doing it.&rdquo;</div>
+        <div class="skills-block">
           <h4 data-i18n="skills-title">Technology Expertise</h4>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span data-i18n="skill-ui-name">AI User Interface</span><span data-i18n="skill-ui-level">Advanced</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span data-i18n="skill-gov-name">AI Governance</span><span data-i18n="skill-gov-level">Advanced</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%; animation-delay:0.1s"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span data-i18n="skill-sec-name">AI Security & Compliance</span><span data-i18n="skill-sec-level">Medium</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%; animation-delay:0.2s"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span data-i18n="skill-fw-name">AI Framework</span><span data-i18n="skill-fw-level">Medium</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%; animation-delay:0.3s"></div></div>
-          </div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span data-i18n="skill-ui-name">AI User Interface</span><span data-i18n="skill-ui-level">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span data-i18n="skill-gov-name">AI Governance</span><span data-i18n="skill-gov-level">Advanced</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span data-i18n="skill-sec-name">AI Security &amp; Compliance</span><span data-i18n="skill-sec-level">Medium</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%;animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-item"><div class="skill-bar-label"><span data-i18n="skill-fw-name">AI Framework</span><span data-i18n="skill-fw-level">Medium</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%;animation-delay:.3s"></div></div></div>
         </div>
-
         <div class="skills-block">
           <h4 data-i18n="langs-title">Languages</h4>
           <div class="lang-tags">
-            <span class="tag tag-blue" data-i18n="lang-es">Español — Native</span>
-            <span class="tag tag-dark" data-i18n="lang-en">English — Professional</span>
-            <span class="tag tag-dim" data-i18n="lang-pt">Português — Limited</span>
+            <span class="tag tag-blue" data-i18n="lang-es">Espa&ntilde;ol &mdash; Native</span>
+            <span class="tag tag-dark" data-i18n="lang-en">English &mdash; Professional</span>
+            <span class="tag tag-dim" data-i18n="lang-pt">Portugu&ecirc;s &mdash; Limited</span>
           </div>
         </div>
-
         <div class="skills-block">
           <h4 data-i18n="edu-title">Education</h4>
           <div class="edu-grid">
-            <div class="edu-item">
-              <div class="edu-degree">Industrial Engineering & Operations Management</div>
-              <div class="edu-school">Universidad Politécnica de Valencia</div>
-              <div class="edu-year">2011 – 2013</div>
-            </div>
-            <div class="edu-item">
-              <div class="edu-degree">Industrial Design Engineering & Product Development</div>
-              <div class="edu-school">Universidad Politécnica de Valencia</div>
-              <div class="edu-year">2008 – 2011</div>
-            </div>
-            <div class="edu-item">
-              <div class="edu-degree" data-i18n="edu3-degree">Master in Industrial Management (2nd Course)</div>
-              <div class="edu-school">Politechnika Poznanska, Poland</div>
-              <div class="edu-year">2011</div>
-            </div>
+            <div class="edu-item"><div class="edu-degree">Industrial Engineering &amp; Operations Management</div><div class="edu-school">Universidad Polit&eacute;cnica de Valencia</div><div class="edu-year">2011 &ndash; 2013</div></div>
+            <div class="edu-item"><div class="edu-degree">Industrial Design Engineering &amp; Product Development</div><div class="edu-school">Universidad Polit&eacute;cnica de Valencia</div><div class="edu-year">2008 &ndash; 2011</div></div>
+            <div class="edu-item"><div class="edu-degree" data-i18n="edu3-degree">Master in Industrial Management</div><div class="edu-school">Politechnika Poznanska, Poland</div><div class="edu-year">2011</div></div>
           </div>
         </div>
       </div>
-
-      <!-- RIGHT: EXPERIENCE -->
-      <div class="about-right reveal" style="transition-delay:0.15s">
+      <div class="reveal" style="transition-delay:.15s">
         <div class="section-header">
-          <p class="section-eyebrow" data-i18n="exp-eyebrow">// 02 — Experience</p>
-          <h2 class="section-title" data-i18n="exp-title">Where I've built.</h2>
+          <p class="section-eyebrow" data-i18n="exp-eyebrow">// 02 &mdash; Experience</p>
+          <h2 class="section-title" data-i18n="exp-title">Where I&rsquo;ve built.</h2>
         </div>
-
         <div class="timeline">
-          <div class="exp-item">
-            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title" data-i18n="exp1-title">Enterprise AI Business Sales</div>
-                <div class="exp-period" data-i18n="exp1-period">Oct 2022 — Present</div>
-              </div>
-              <div class="exp-company">MICROSOFT · Madrid</div>
-              <div class="exp-desc" data-i18n="exp1-desc">Orchestrate cross-functional teams and assess customer needs to develop end-to-end AI strategies covering the full stack — from UI for AI to the LLM layer. Drove revenue from zero to <strong style="color:var(--accent);">€9M annual recurring revenue</strong> in AI.</div>
-            </div>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title">Customer Success Manager — Modern Workplace</div>
-                <div class="exp-period" data-i18n="exp2-period">Feb 2020 — Oct 2022</div>
-              </div>
-              <div class="exp-company">MICROSOFT · Madrid</div>
-              <div class="exp-desc" data-i18n="exp2-desc">Drove digital transformation for Financial sector and Manufacturing clients, enhancing collaboration, accelerating knowledge transfer, and fostering innovation for major Spanish enterprises.</div>
-            </div>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title" data-i18n="exp3-title">Co-Founder</div>
-                <div class="exp-period" data-i18n="exp3-period">Nov 2018 — Dec 2019</div>
-              </div>
-              <div class="exp-company">WELIFEVAN · Barcelona</div>
-              <div class="exp-desc" data-i18n="exp3-desc">Co-founded and led digital marketing strategy and growth initiatives, positioning the brand as a competitive player in the sustainable mobility and camper-rental market.</div>
-            </div>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title">Product Marketing Manager — Modern Workplace</div>
-                <div class="exp-period">Jul 2016 — Jul 2019</div>
-              </div>
-              <div class="exp-company">VODAFONE · Madrid</div>
-              <div class="exp-desc" data-i18n="exp4-desc">Responsible for Product Roadmap, P&L, budget and KPIs of a €20M portfolio. Reported directly to C-level executives.</div>
-            </div>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title">Corporate Key Account Manager</div>
-                <div class="exp-period" data-i18n="exp5-period">Dec 2013 — Jul 2016</div>
-              </div>
-              <div class="exp-company">VODAFONE SPAIN · Barcelona</div>
-              <div class="exp-desc" data-i18n="exp5-desc">Identified customer needs, collaborated with cross-functional teams, and built long-term C-level relationships to enhance customer satisfaction.</div>
-            </div>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
-            <div class="exp-content">
-              <div class="exp-header">
-                <div class="exp-title" data-i18n="exp6-title">Associate Professor — Product Marketing</div>
-                <div class="exp-period">Oct 2018 — Jun 2019</div>
-              </div>
-              <div class="exp-company">ESCUELA DE NEGOCIO LLUIS VIVES</div>
-              <div class="exp-desc" data-i18n="exp6-desc">Taught product marketing fundamentals to business students alongside professional career.</div>
-            </div>
-          </div>
+          <div class="exp-item"><div class="exp-dot"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title" data-i18n="exp1-title">Enterprise AI Business Exec</div><div class="exp-period" data-i18n="exp1-period">Oct 2022 &mdash; Present</div></div><div class="exp-company">MICROSOFT &middot; Madrid</div><div class="exp-desc" data-i18n="exp1-desc">Orchestrate cross-functional teams to develop end-to-end AI strategies. Drove revenue from zero to <strong style="color:var(--accent)">&euro;9M ARR</strong> in AI.</div></div></div>
+          <div class="exp-item"><div class="exp-dot"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Customer Success Manager &mdash; Modern Workplace</div><div class="exp-period" data-i18n="exp2-period">Feb 2020 &mdash; Oct 2022</div></div><div class="exp-company">MICROSOFT &middot; Madrid</div><div class="exp-desc" data-i18n="exp2-desc">Drove digital transformation for Financial and Manufacturing clients across major Spanish enterprises.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title" data-i18n="exp3-title">Co-Founder</div><div class="exp-period" data-i18n="exp3-period">Nov 2018 &mdash; Dec 2019</div></div><div class="exp-company">WELIFEVAN &middot; Barcelona</div><div class="exp-desc" data-i18n="exp3-desc">Co-founded and led digital marketing strategy in the sustainable mobility and camper-rental market.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Product Marketing Manager &mdash; Modern Workplace</div><div class="exp-period">Jul 2016 &mdash; Jul 2019</div></div><div class="exp-company">VODAFONE &middot; Madrid</div><div class="exp-desc" data-i18n="exp4-desc">Responsible for Product Roadmap, P&amp;L, budget and KPIs of a &euro;20M portfolio. Reported to C-level.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title">Corporate Key Account Manager</div><div class="exp-period" data-i18n="exp5-period">Dec 2013 &mdash; Jul 2016</div></div><div class="exp-company">VODAFONE SPAIN &middot; Barcelona</div><div class="exp-desc" data-i18n="exp5-desc">Built long-term C-level relationships and identified customer needs with cross-functional teams.</div></div></div>
+          <div class="exp-item"><div class="exp-dot dim"><div class="exp-dot-inner"></div></div><div><div class="exp-header"><div class="exp-title" data-i18n="exp6-title">Associate Professor &mdash; Product Marketing</div><div class="exp-period">Oct 2018 &mdash; Jun 2019</div></div><div class="exp-company">ESCUELA DE NEGOCIO LLUIS VIVES</div><div class="exp-desc" data-i18n="exp6-desc">Taught product marketing fundamentals alongside professional career.</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-eyebrow" data-i18n="proj-eyebrow">// 03 — Projects</p>
-      <h2 class="section-title" data-i18n="proj-title">AI frameworks I've built in the field.</h2>
+      <p class="section-eyebrow" data-i18n="proj-eyebrow">// 03 &mdash; Projects</p>
+      <h2 class="section-title" data-i18n="proj-title">AI frameworks I&rsquo;ve built in the field.</h2>
     </div>
-
     <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <div class="project-icon">🏭</div>
-        <div class="project-title" data-i18n="proj1-title">AI Industry Value Acceleration</div>
-        <div class="project-desc" data-i18n="proj1-desc">Built repeatable, industry-focused motions that translate AI capabilities into measurable business outcomes and prioritized opportunity pipelines across Resources, Manufacturing & Construction.</div>
-        <div class="project-tags">
-          <span class="tag tag-agents">AI Agents</span>
-          <span class="tag tag-gtm2">GTM</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.08s">
-        <div class="project-icon">⚙️</div>
-        <div class="project-title" data-i18n="proj2-title">AI Center of Excellence (CoE)</div>
-        <div class="project-desc" data-i18n="proj2-desc">Defined a cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.</div>
-        <div class="project-tags">
-          <span class="tag tag-agents">AI Agents</span>
-          <span class="tag tag-gtm2">GTM</span>
-          <span class="tag tag-workforce">Workforce</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.16s">
-        <div class="project-icon">📘</div>
-        <div class="project-title" data-i18n="proj3-title">AI Adoption Playbook & Change Framework</div>
-        <div class="project-desc" data-i18n="proj3-desc">Packaged a scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.</div>
-        <div class="project-tags">
-          <span class="tag tag-workforce">Workforce</span>
-          <span class="tag tag-gtm2">GTM</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.24s">
-        <div class="project-icon">🤖</div>
-        <div class="project-title" data-i18n="proj4-title">Agentic Workflow Discovery & Prototyping</div>
-        <div class="project-desc" data-i18n="proj4-desc">Led workshops to identify repetitive processes, design task-specific "digital workers," and validate practical use cases with business teams.</div>
-        <div class="project-tags">
-          <span class="tag tag-agents">AI Agents</span>
-          <span class="tag tag-workforce">Workforce</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.32s">
-        <div class="project-icon">💡</div>
-        <div class="project-title" data-i18n="proj5-title">AI Value Narrative Creation</div>
-        <div class="project-desc" data-i18n="proj5-desc">Enabled teams with a clear adoption journey — from assistance to automation — and a value story tied to outcomes, not just time savings.</div>
-        <div class="project-tags">
-          <span class="tag tag-workforce">Workforce</span>
-          <span class="tag tag-gtm2">GTM</span>
-          <span class="tag tag-agents">AI Agents</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.40s">
-        <div class="project-icon">🎯</div>
-        <div class="project-title" data-i18n="proj6-title">Executive & Ecosystem Engagement Program</div>
-        <div class="project-desc" data-i18n="proj6-desc">Orchestrated stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities through events and field orchestration.</div>
-        <div class="project-tags">
-          <span class="tag tag-gtm2">GTM</span>
-          <span class="tag tag-workforce">Workforce</span>
-          <span class="tag tag-agents">AI Agents</span>
-        </div>
-      </div>
-
+      <div class="project-card reveal"><div class="project-icon">&#127981;</div><div class="project-title" data-i18n="proj1-title">AI Industry Value Acceleration</div><div class="project-desc" data-i18n="proj1-desc">Built repeatable, industry-focused motions translating AI capabilities into measurable business outcomes across Resources, Manufacturing &amp; Construction.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-gtm2">GTM</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.08s"><div class="project-icon">&#9881;</div><div class="project-title" data-i18n="proj2-title">AI Center of Excellence (CoE)</div><div class="project-desc" data-i18n="proj2-desc">Cross-functional CoE approach &mdash; operating model, governance, and standards &mdash; to scale AI across the enterprise while staying in control.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-gtm2">GTM</span><span class="tag tag-workforce">Workforce</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.16s"><div class="project-icon">&#128216;</div><div class="project-title" data-i18n="proj3-title">AI Adoption Playbook &amp; Change Framework</div><div class="project-desc" data-i18n="proj3-desc">Scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.</div><div class="project-tags"><span class="tag tag-workforce">Workforce</span><span class="tag tag-gtm2">GTM</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.24s"><div class="project-icon">&#129302;</div><div class="project-title" data-i18n="proj4-title">Agentic Workflow Discovery &amp; Prototyping</div><div class="project-desc" data-i18n="proj4-desc">Workshops to identify repetitive processes, design task-specific digital workers, and validate practical use cases with business teams.</div><div class="project-tags"><span class="tag tag-agents">AI Agents</span><span class="tag tag-workforce">Workforce</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.32s"><div class="project-icon">&#128161;</div><div class="project-title" data-i18n="proj5-title">AI Value Narrative Creation</div><div class="project-desc" data-i18n="proj5-desc">Enabled teams with a clear adoption journey from assistance to automation, with a value story tied to outcomes &mdash; not just time savings.</div><div class="project-tags"><span class="tag tag-workforce">Workforce</span><span class="tag tag-gtm2">GTM</span><span class="tag tag-agents">AI Agents</span></div></div>
+      <div class="project-card reveal" style="transition-delay:.40s"><div class="project-icon">&#127919;</div><div class="project-title" data-i18n="proj6-title">Executive &amp; Ecosystem Engagement Program</div><div class="project-desc" data-i18n="proj6-desc">Stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities.</div><div class="project-tags"><span class="tag tag-gtm2">GTM</span><span class="tag tag-workforce">Workforce</span><span class="tag tag-agents">AI Agents</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- BLOG -->
 <section id="blog">
   <div class="container">
     <div class="blog-header-row reveal">
       <div>
-        <p class="section-eyebrow" data-i18n="blog-eyebrow">// 04 — Writing</p>
-        <h2 class="section-title" data-i18n="blog-title">Thoughts on AI & Enterprise.</h2>
+        <p class="section-eyebrow" data-i18n="insp-eyebrow">// 04 &mdash; Inspiration</p>
+        <h2 class="section-title" data-i18n="insp-title">Words worth Reading.</h2>
       </div>
-      <div style="display:flex;gap:0.7rem;flex-wrap:wrap;">
-        <a href="https://substack.com/@miguelvv" target="_blank" class="btn btn-outline" data-i18n="btn-articles">All Articles ↗</a>
-        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <a href="https://substack.com/@miguelvv" target="_blank" class="btn btn-outline" data-i18n="btn-my-articles">My Articles &#x2197;</a>
+        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn &#x2197;</a>
       </div>
     </div>
-
-    <!-- Filter Tabs -->
     <div class="blog-tabs">
-      <button class="blog-tab active" onclick="filterBlog('all', this)">
-        <span class="tab-dot tab-dot-all"></span> <span data-i18n="tab-all">All</span>
-      </button>
-      <button class="blog-tab" onclick="filterBlog('article', this)">
-        <span class="tab-dot tab-dot-article"></span> <span data-i18n="tab-articles">Articles</span>
-      </button>
-      <button class="blog-tab" onclick="filterBlog('post', this)">
-        <span class="tab-dot tab-dot-post"></span> <span data-i18n="tab-posts">LinkedIn Posts</span>
-      </button>
+      <button class="blog-tab active" onclick="filterCards('all',this)"><span class="tab-dot tab-dot-all"></span> <span data-i18n="tab-all">All</span></button>
+      <button class="blog-tab" onclick="filterCards('my article',this)"><span class="tab-dot tab-dot-mine"></span> <span data-i18n="tab-mine">My Articles</span></button>
+      <button class="blog-tab" onclick="filterCards('book',this)"><span class="tab-dot tab-dot-book"></span> <span data-i18n="tab-books">Books</span></button>
     </div>
-
-    <div id="blog-loading">
-      <span data-i18n="blog-loading">Fetching latest posts</span><span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
+    <div id="blog-loading"><span data-i18n="blog-loading">Loading</span><span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span></div>
+    <div class="carousel-wrapper" id="carousel-wrapper">
+      <button class="carousel-btn" id="btn-left" onclick="scrollCarousel(-1)">&#8592;</button>
+      <div class="carousel-track" id="carousel-track"></div>
+      <button class="carousel-btn" id="btn-right" onclick="scrollCarousel(1)">&#8594;</button>
     </div>
-    <div id="blog-grid" class="blog-grid" style="display:none;"></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-left">
-        <div class="footer-name">Miguel Vázquez Vicente</div>
-        <div class="footer-sub" data-i18n="footer-sub">Enterprise AI Business Exec · Microsoft · Madrid</div>
+      <div>
+        <div class="footer-name">Miguel V&aacute;zquez Vicente</div>
+        <div class="footer-sub" data-i18n="footer-sub">Enterprise AI Business Exec &middot; Microsoft &middot; Madrid</div>
       </div>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="social-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://substack.com/@miguelvv" target="_blank" class="social-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-          Substack
-        </a>
-        <a href="mailto:miguelvazquezvicente@gmail.com" class="social-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email
-        </a>
+        <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+        <a href="https://substack.com/@miguelvv" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg> Substack</a>
+        <a href="mailto:miguelvazquezvicente@gmail.com" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</a>
       </div>
     </div>
-    <div class="footer-copy" data-i18n="footer-copy">© 2025 Miguel Vázquez Vicente · Built with intention.</div>
+    <div class="footer-copy" data-i18n="footer-copy">&copy; 2025 Miguel V&aacute;zquez Vicente &middot; Built with intention.</div>
   </div>
 </footer>
 
 <script>
-  // ── TRANSLATIONS ──
-  const translations = {
-    en: {
-      'nav-about': 'About',
-      'nav-projects': 'Projects',
-      'nav-writing': 'Writing',
-      'hero-eyebrow': '// Enterprise AI · Madrid, Spain',
-      'hero-title': 'Hey, I\'m<br><span class="line2">Miguel.</span>',
-      'hero-role': '<strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Professional Lecturer · @AI Advisor',
-      'hero-bio': 'Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments, orchestrate cross-functional teams, and turn full-stack AI strategy into measurable outcomes.',
-      'btn-resume': 'View Resume →',
-      'btn-writing': 'Read My Writing',
-      'btn-articles': 'All Articles ↗',
-      'stat-tech-label': 'Years in Tech',
-      'stat-ai-subtitle': '4 in AI Tech Ecosystem',
-      'legend-tech': 'Tech career',
-      'legend-ai': 'AI Tech Ecosystem',
-      'stat-industry': 'Industry Expertise',
-      'ind-telco': 'Telco',
-      'ind-resources': 'Resources',
-      'ind-manufacturing': 'Manufac\u00adturing',
-      'ind-construction': 'Construc\u00adtion',
-      'stat-stack': 'Operating Stack (End&#8209;to&#8209;End)',
-      'layer-0-name': 'Regulation & Policy',
-      'layer-1-name': 'Govern · Secure · Observe',
-      'layer-2-name': 'Enterprise Knowledge & Data',
-      'layer-3-name': 'Model Layer (LLMs)',
-      'layer-4-name': 'Orchestration & Agent Runtime',
-      'layer-5-name': 'Build Studio (Low&#8209;code → Pro&#8209;code)',
-      'layer-6-name': 'Adopt · Operate · Monetize',
-      'about-eyebrow': '// 01 — About',
-      'about-title': 'The person behind the pitch.',
-      'about-bio': 'Industrial Engineer turned Enterprise AI Sales. I started my career at Vodafone — from Key Account to Product Marketing — then co-founded a sustainable mobility startup, and eventually landed at Microsoft, where I now help Spain\'s largest enterprises build AI strategies that actually move the needle.',
-      'about-motto': '"Leave things better than you found them—and enjoy doing it."',
-      'skills-title': 'Technology Expertise',
-      'skill-ui-name': 'AI User Interface',
-      'skill-ui-level': 'Advanced',
-      'skill-gov-name': 'AI Governance',
-      'skill-gov-level': 'Advanced',
-      'skill-sec-name': 'AI Security & Compliance',
-      'skill-sec-level': 'Medium',
-      'skill-fw-name': 'AI Framework',
-      'skill-fw-level': 'Medium',
-      'langs-title': 'Languages',
-      'lang-es': 'Español — Native',
-      'lang-en': 'English — Professional',
-      'lang-pt': 'Português — Limited',
-      'edu-title': 'Education',
-      'edu3-degree': 'Master in Industrial Management (2nd Course)',
-      'exp-eyebrow': '// 02 — Experience',
-      'exp-title': 'Where I\'ve built.',
-      'exp1-title': 'Enterprise AI Business Sales',
-      'exp1-period': 'Oct 2022 — Present',
-      'exp1-desc': 'Orchestrate cross-functional teams and assess customer needs to develop end-to-end AI strategies covering the full stack — from UI for AI to the LLM layer. Drove revenue from zero to <strong style="color:var(--accent);">€9M annual recurring revenue</strong> in AI.',
-      'exp2-period': 'Feb 2020 — Oct 2022',
-      'exp2-desc': 'Drove digital transformation for Financial sector and Manufacturing clients, enhancing collaboration, accelerating knowledge transfer, and fostering innovation for major Spanish enterprises.',
-      'exp3-title': 'Co-Founder',
-      'exp3-period': 'Nov 2018 — Dec 2019',
-      'exp3-desc': 'Co-founded and led digital marketing strategy and growth initiatives, positioning the brand as a competitive player in the sustainable mobility and camper-rental market.',
-      'exp4-desc': 'Responsible for Product Roadmap, P&L, budget and KPIs of a €20M portfolio. Reported directly to C-level executives.',
-      'exp5-period': 'Dec 2013 — Jul 2016',
-      'exp5-desc': 'Identified customer needs, collaborated with cross-functional teams, and built long-term C-level relationships to enhance customer satisfaction.',
-      'exp6-title': 'Associate Professor — Product Marketing',
-      'exp6-desc': 'Taught product marketing fundamentals to business students alongside professional career.',
-      'proj-eyebrow': '// 03 — Projects',
-      'proj-title': 'AI frameworks I\'ve built in the field.',
-      'proj1-title': 'AI Industry Value Acceleration',
-      'proj1-desc': 'Built repeatable, industry-focused motions that translate AI capabilities into measurable business outcomes and prioritized opportunity pipelines across Resources, Manufacturing & Construction.',
-      'proj2-title': 'AI Center of Excellence (CoE)',
-      'proj2-desc': 'Defined a cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.',
-      'proj3-title': 'AI Adoption Playbook & Change Framework',
-      'proj3-desc': 'Packaged a scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.',
-      'proj4-title': 'Agentic Workflow Discovery & Prototyping',
-      'proj4-desc': 'Led workshops to identify repetitive processes, design task-specific "digital workers," and validate practical use cases with business teams.',
-      'proj5-title': 'AI Value Narrative Creation',
-      'proj5-desc': 'Enabled teams with a clear adoption journey — from assistance to automation — and a value story tied to outcomes, not just time savings.',
-      'proj6-title': 'Executive & Ecosystem Engagement Program',
-      'proj6-desc': 'Orchestrated stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities through events and field orchestration.',
-      'blog-eyebrow': '// 04 — Writing',
-      'blog-title': 'Thoughts on AI & Enterprise.',
-      'blog-loading': 'Fetching latest posts',
-      'tab-all': 'All',
-      'tab-articles': 'Articles',
-      'tab-posts': 'LinkedIn Posts',
-      'footer-sub': 'Enterprise AI Business Exec · Microsoft · Madrid',
-      'footer-copy': '© 2025 Miguel Vázquez Vicente · Built with intention.',
-      'li-author-role': 'Enterprise AI Business Exec · Microsoft',
-      'li-comments-label': '// Top comments',
-      'no-content': 'No content for this filter yet.',
-      'article-source': 'Article · Substack',
-    },
-    es: {
-      'nav-about': 'Sobre mí',
-      'nav-projects': 'Proyectos',
-      'nav-writing': 'Artículos',
-      'hero-eyebrow': '// Enterprise AI · Madrid, España',
-      'hero-title': 'Hola, soy<br><span class="line2">Miguel.</span>',
-      'hero-role': '<strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Profesor · @Asesor de IA',
-      'hero-bio': 'Apasionado por impulsar organizaciones y transformar ideas en soluciones de impacto. Navego entornos complejos de IA, coordino equipos multifuncionales y convierto la estrategia de IA end-to-end en resultados medibles.',
-      'btn-resume': 'Ver Currículum →',
-      'btn-writing': 'Leer mis artículos',
-      'btn-articles': 'Todos los artículos ↗',
-      'stat-tech-label': 'Años en tecnología',
-      'stat-ai-subtitle': '4 en el ecosistema de IA',
-      'legend-tech': 'Carrera tecnológica',
-      'legend-ai': 'Ecosistema de IA',
-      'stat-industry': 'Sectores de especialización',
-      'ind-telco': 'Telco',
-      'ind-resources': 'Recursos',
-      'ind-manufacturing': 'Manufac\u00adtura',
-      'ind-construction': 'Construc\u00adción',
-      'stat-stack': 'Stack operativo (End&#8209;to&#8209;End)',
-      'layer-0-name': 'Regulación & Política',
-      'layer-1-name': 'Govern · Secure · Observe',
-      'layer-2-name': 'Conocimiento & Datos Empresariales',
-      'layer-3-name': 'Capa de Modelos (LLMs)',
-      'layer-4-name': 'Orquestación & Agent Runtime',
-      'layer-5-name': 'Build Studio (Low&#8209;code → Pro&#8209;code)',
-      'layer-6-name': 'Adoptar · Operar · Monetizar',
-      'about-eyebrow': '// 01 — Sobre mí',
-      'about-title': 'La persona detrás del discurso.',
-      'about-bio': 'Ingeniero Industrial reconvertido en ventas de IA empresarial. Empecé mi carrera en Vodafone — desde Key Account hasta Product Marketing — luego cofundé una startup de movilidad sostenible y terminé aterrizando en Microsoft, donde ayudo a las grandes empresas españolas a construir estrategias de IA que realmente mueven la aguja.',
-      'about-motto': '"Deja las cosas mejor de como las encontraste—y disfruta haciéndolo."',
-      'skills-title': 'Expertise Tecnológico',
-      'skill-ui-name': 'Interfaz de usuario de IA',
-      'skill-ui-level': 'Avanzado',
-      'skill-gov-name': 'AI Governance',
-      'skill-gov-level': 'Avanzado',
-      'skill-sec-name': 'Seguridad & Compliance de IA',
-      'skill-sec-level': 'Medio',
-      'skill-fw-name': 'AI Framework',
-      'skill-fw-level': 'Medio',
-      'langs-title': 'Idiomas',
-      'lang-es': 'Español — Nativo',
-      'lang-en': 'English — Profesional',
-      'lang-pt': 'Português — Básico',
-      'edu-title': 'Formación',
-      'edu3-degree': 'Máster en Gestión Industrial (2º Curso)',
-      'exp-eyebrow': '// 02 — Experiencia',
-      'exp-title': 'Donde lo he construido.',
-      'exp1-title': 'Enterprise AI Business Sales',
-      'exp1-period': 'Oct 2022 — Presente',
-      'exp1-desc': 'Orquesto equipos multifuncionales y evalúo las necesidades del cliente para desarrollar estrategias de IA end-to-end que cubren el stack completo — desde la UI para IA hasta la capa LLM. Crecí el revenue de cero a <strong style="color:var(--accent);">€9M de ingresos recurrentes anuales</strong> en IA.',
-      'exp2-period': 'Feb 2020 — Oct 2022',
-      'exp2-desc': 'Lideré la transformación digital para clientes del sector financiero y manufacturero, mejorando la colaboración, acelerando la transferencia de conocimiento y fomentando la innovación en grandes empresas españolas.',
-      'exp3-title': 'Co-Fundador',
-      'exp3-period': 'Nov 2018 — Dic 2019',
-      'exp3-desc': 'Cofundé y lideré la estrategia de marketing digital e iniciativas de crecimiento, posicionando la marca como actor competitivo en el mercado de movilidad sostenible y alquiler de furgonetas camper.',
-      'exp4-desc': 'Responsable del Product Roadmap, P&L, presupuesto y KPIs de una cartera de €20M. Reportaba directamente a ejecutivos C-level.',
-      'exp5-period': 'Dic 2013 — Jul 2016',
-      'exp5-desc': 'Identifiqué necesidades del cliente, colaboré con equipos multifuncionales y construí relaciones a largo plazo con ejecutivos C-level para mejorar la satisfacción del cliente.',
-      'exp6-title': 'Profesor Asociado — Product Marketing',
-      'exp6-desc': 'Impartí fundamentos de product marketing a estudiantes de negocio compaginándolo con la carrera profesional.',
-      'proj-eyebrow': '// 03 — Proyectos',
-      'proj-title': 'Frameworks de IA que he construido sobre el terreno.',
-      'proj1-title': 'Aceleración del valor de IA por industria',
-      'proj1-desc': 'Construí motions repetibles centrados en la industria que traducen las capacidades de IA en resultados de negocio medibles y pipelines de oportunidad priorizados en los sectores de Recursos, Manufactura y Construcción.',
-      'proj2-title': 'AI Center of Excellence (CoE)',
-      'proj2-desc': 'Definí un enfoque de CoE transversal — modelo operativo, gobernanza y estándares — para escalar la IA en toda la empresa manteniendo el control.',
-      'proj3-title': 'Playbook de Adopción de IA & Marco de Cambio',
-      'proj3-desc': 'Diseñé un modelo de adopción escalable centrado en el cambio de comportamiento, champions, guardrails y aprendizaje continuo integrado en el trabajo diario.',
-      'proj4-title': 'Descubrimiento & Prototipado de Flujos Agénticos',
-      'proj4-desc': 'Lideré talleres para identificar procesos repetitivos, diseñar "trabajadores digitales" específicos y validar casos de uso prácticos con equipos de negocio.',
-      'proj5-title': 'Creación de Narrativa de Valor de IA',
-      'proj5-desc': 'Equipé a los equipos con un journey de adopción claro — de la asistencia a la automatización — y una historia de valor ligada a resultados, no solo a ahorro de tiempo.',
-      'proj6-title': 'Programa de Engagement Ejecutivo & de Ecosistema',
-      'proj6-desc': 'Orquesté programas de engagement con stakeholders alineando líderes, clientes y partners en torno a las prioridades de transformación de IA escalable a través de eventos y orquestación de campo.',
-      'blog-eyebrow': '// 04 — Artículos',
-      'blog-title': 'Reflexiones sobre IA y la empresa.',
-      'blog-loading': 'Cargando últimas publicaciones',
-      'tab-all': 'Todo',
-      'tab-articles': 'Artículos',
-      'tab-posts': 'Posts de LinkedIn',
-      'footer-sub': 'Enterprise AI Business Exec · Microsoft · Madrid',
-      'footer-copy': '© 2025 Miguel Vázquez Vicente · Hecho con intención.',
-      'li-author-role': 'Enterprise AI Business Exec · Microsoft',
-      'li-comments-label': '// Comentarios destacados',
-      'no-content': 'Sin contenido para este filtro.',
-      'article-source': 'Artículo · Substack',
-    }
-  };
-
-  let currentLang = 'en';
-
-  function setLang(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (translations[lang][key] !== undefined) {
-        el.innerHTML = translations[lang][key];
-      }
-    });
-    if (allContent.length > 0) renderGrid();
+// ── TRANSLATIONS ──
+var translations={
+  en:{
+    'nav-about':'About','nav-projects':'Projects','nav-inspiration':'Inspiration',
+    'hero-eyebrow':'// Enterprise AI · Madrid, Spain',
+    'hero-title':'Hey, I\'m<br><span class="line2">Miguel.</span>',
+    'hero-role':'<strong>Enterprise AI Business Exec</strong><br>@ Microsoft &nbsp;·&nbsp; @Professional Lecturer &nbsp;·&nbsp; @AI Advisor',
+    'hero-bio':'Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments and turn full-stack AI strategy into measurable outcomes.',
+    'btn-resume':'View Resume →','btn-inspiration':'Inspiration Ideas',
+    'stat-tech-label':'Years in Tech','stat-ai-subtitle':'4 in AI Tech Ecosystem',
+    'legend-tech':'Tech career','legend-ai':'AI Tech Ecosystem',
+    'stat-industry':'Industry Expertise',
+    'ind-telco':'Telco','ind-resources':'Resources','ind-manufacturing':'Manufacturing','ind-construction':'Construction',
+    'stat-stack':'Operating Stack (End&#8209;to&#8209;End)',
+    'layer-0-name':'Regulation &amp; Policy','layer-1-name':'Govern · Secure · Observe',
+    'layer-2-name':'Enterprise Knowledge &amp; Data','layer-3-name':'Model Layer (LLMs)',
+    'layer-4-name':'Orchestration &amp; Agent Runtime','layer-5-name':'Build Studio (Low&#8209;code → Pro&#8209;code)',
+    'layer-6-name':'Adopt · Operate · Monetize',
+    'about-eyebrow':'// 01 — About','about-title':'The person behind the pitch.',
+    'about-bio':'Industrial Engineer turned Enterprise AI Sales. From Vodafone Key Account to Product Marketing, to co-founding a sustainable mobility startup, to Microsoft — where I help Spain\'s largest enterprises build AI strategies that actually move the needle.',
+    'about-motto':'"Leave things better than you found them—and enjoy doing it."',
+    'skills-title':'Technology Expertise',
+    'skill-ui-name':'AI User Interface','skill-ui-level':'Advanced',
+    'skill-gov-name':'AI Governance','skill-gov-level':'Advanced',
+    'skill-sec-name':'AI Security &amp; Compliance','skill-sec-level':'Medium',
+    'skill-fw-name':'AI Framework','skill-fw-level':'Medium',
+    'langs-title':'Languages',
+    'lang-es':'Español — Native','lang-en':'English — Professional','lang-pt':'Português — Limited',
+    'edu-title':'Education','edu3-degree':'Master in Industrial Management',
+    'exp-eyebrow':'// 02 — Experience','exp-title':'Where I\'ve built.',
+    'exp1-title':'Enterprise AI Business Exec','exp1-period':'Oct 2022 — Present',
+    'exp1-desc':'Orchestrate cross-functional teams to develop end-to-end AI strategies. Drove revenue from zero to <strong style="color:var(--accent)">€9M ARR</strong> in AI.',
+    'exp2-period':'Feb 2020 — Oct 2022',
+    'exp2-desc':'Drove digital transformation for Financial and Manufacturing clients across major Spanish enterprises.',
+    'exp3-title':'Co-Founder','exp3-period':'Nov 2018 — Dec 2019',
+    'exp3-desc':'Co-founded and led digital marketing strategy in the sustainable mobility and camper-rental market.',
+    'exp4-desc':'Responsible for Product Roadmap, P&amp;L, budget and KPIs of a €20M portfolio. Reported to C-level.',
+    'exp5-period':'Dec 2013 — Jul 2016',
+    'exp5-desc':'Built long-term C-level relationships and identified customer needs with cross-functional teams.',
+    'exp6-title':'Associate Professor — Product Marketing',
+    'exp6-desc':'Taught product marketing fundamentals alongside professional career.',
+    'proj-eyebrow':'// 03 — Projects','proj-title':'AI frameworks I\'ve built in the field.',
+    'proj1-title':'AI Industry Value Acceleration','proj1-desc':'Built repeatable, industry-focused motions translating AI capabilities into measurable business outcomes across Resources, Manufacturing &amp; Construction.',
+    'proj2-title':'AI Center of Excellence (CoE)','proj2-desc':'Cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.',
+    'proj3-title':'AI Adoption Playbook &amp; Change Framework','proj3-desc':'Scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.',
+    'proj4-title':'Agentic Workflow Discovery &amp; Prototyping','proj4-desc':'Workshops to identify repetitive processes, design task-specific digital workers, and validate practical use cases with business teams.',
+    'proj5-title':'AI Value Narrative Creation','proj5-desc':'Enabled teams with a clear adoption journey from assistance to automation, with a value story tied to outcomes — not just time savings.',
+    'proj6-title':'Executive &amp; Ecosystem Engagement Program','proj6-desc':'Stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities.',
+    'insp-eyebrow':'// 04 — Inspiration','insp-title':'Words worth Reading.',
+    'btn-my-articles':'My Articles ↗','tab-all':'All','tab-mine':'My Articles','tab-books':'Books',
+    'blog-loading':'Loading',
+    'footer-sub':'Enterprise AI Business Exec · Microsoft · Madrid',
+    'footer-copy':'© 2025 Miguel Vázquez Vicente · Built with intention.',
+    'no-items':'No items for this filter.'
+  },
+  es:{
+    'nav-about':'Sobre mí','nav-projects':'Proyectos','nav-inspiration':'Inspiración',
+    'hero-eyebrow':'// Enterprise AI · Madrid, España',
+    'hero-title':'Hola, soy<br><span class="line2">Miguel.</span>',
+    'hero-role':'<strong>Enterprise AI Business Exec</strong><br>@ Microsoft &nbsp;·&nbsp; @Profesor &nbsp;·&nbsp; @Asesor de IA',
+    'hero-bio':'Apasionado por impulsar organizaciones y transformar ideas en soluciones de impacto. Navego entornos complejos de IA y convierto la estrategia de IA end-to-end en resultados medibles.',
+    'btn-resume':'Ver Currículum →','btn-inspiration':'Ideas de Inspiración',
+    'stat-tech-label':'Años en tecnología','stat-ai-subtitle':'4 en el ecosistema de IA',
+    'legend-tech':'Carrera tecnológica','legend-ai':'Ecosistema de IA',
+    'stat-industry':'Sectores de especialización',
+    'ind-telco':'Telco','ind-resources':'Recursos','ind-manufacturing':'Manufactura','ind-construction':'Construcción',
+    'stat-stack':'Stack operativo (End&#8209;to&#8209;End)',
+    'layer-0-name':'Regulación &amp; Política','layer-1-name':'Govern · Secure · Observe',
+    'layer-2-name':'Conocimiento &amp; Datos Empresariales','layer-3-name':'Capa de Modelos (LLMs)',
+    'layer-4-name':'Orquestación &amp; Agent Runtime','layer-5-name':'Build Studio (Low&#8209;code → Pro&#8209;code)',
+    'layer-6-name':'Adoptar · Operar · Monetizar',
+    'about-eyebrow':'// 01 — Sobre mí','about-title':'La persona detrás del discurso.',
+    'about-bio':'Ingeniero Industrial reconvertido en ventas de IA empresarial. Desde Key Account en Vodafone hasta Product Marketing, cofundando una startup de movilidad sostenible y aterrizando en Microsoft — donde ayudo a las grandes empresas españolas a construir estrategias de IA que realmente mueven la aguja.',
+    'about-motto':'"Deja las cosas mejor de como las encontraste—y disfruta haciéndolo."',
+    'skills-title':'Expertise Tecnológico',
+    'skill-ui-name':'Interfaz de usuario de IA','skill-ui-level':'Avanzado',
+    'skill-gov-name':'AI Governance','skill-gov-level':'Avanzado',
+    'skill-sec-name':'Seguridad &amp; Compliance de IA','skill-sec-level':'Medio',
+    'skill-fw-name':'AI Framework','skill-fw-level':'Medio',
+    'langs-title':'Idiomas',
+    'lang-es':'Español — Nativo','lang-en':'English — Profesional','lang-pt':'Português — Básico',
+    'edu-title':'Formación','edu3-degree':'Máster en Gestión Industrial',
+    'exp-eyebrow':'// 02 — Experiencia','exp-title':'Donde lo he construido.',
+    'exp1-title':'Enterprise AI Business Exec','exp1-period':'Oct 2022 — Presente',
+    'exp1-desc':'Orquesto equipos multifuncionales para desarrollar estrategias de IA end-to-end. Crecí el revenue de cero a <strong style="color:var(--accent)">€9M ARR</strong> en IA.',
+    'exp2-period':'Feb 2020 — Oct 2022',
+    'exp2-desc':'Lideré la transformación digital para clientes del sector financiero y manufacturero en grandes empresas españolas.',
+    'exp3-title':'Co-Fundador','exp3-period':'Nov 2018 — Dic 2019',
+    'exp3-desc':'Cofundé y lideré la estrategia de marketing digital en el mercado de movilidad sostenible y alquiler de furgonetas camper.',
+    'exp4-desc':'Responsable del Product Roadmap, P&amp;L, presupuesto y KPIs de una cartera de €20M. Reportaba a C-level.',
+    'exp5-period':'Dic 2013 — Jul 2016',
+    'exp5-desc':'Construí relaciones a largo plazo con ejecutivos C-level e identifiqué necesidades del cliente con equipos multifuncionales.',
+    'exp6-title':'Profesor Asociado — Product Marketing',
+    'exp6-desc':'Impartí fundamentos de product marketing compaginándolo con la carrera profesional.',
+    'proj-eyebrow':'// 03 — Proyectos','proj-title':'Frameworks de IA que he construido sobre el terreno.',
+    'proj1-title':'Aceleración del valor de IA por industria','proj1-desc':'Construí motions repetibles centrados en la industria que traducen las capacidades de IA en resultados de negocio medibles en los sectores de Recursos, Manufactura y Construcción.',
+    'proj2-title':'AI Center of Excellence (CoE)','proj2-desc':'Enfoque de CoE transversal — modelo operativo, gobernanza y estándares — para escalar la IA en toda la empresa manteniendo el control.',
+    'proj3-title':'Playbook de Adopción de IA &amp; Marco de Cambio','proj3-desc':'Modelo de adopción escalable centrado en el cambio de comportamiento, champions, guardrails y aprendizaje continuo integrado en el trabajo diario.',
+    'proj4-title':'Descubrimiento &amp; Prototipado de Flujos Agénticos','proj4-desc':'Talleres para identificar procesos repetitivos, diseñar trabajadores digitales específicos y validar casos de uso prácticos con equipos de negocio.',
+    'proj5-title':'Creación de Narrativa de Valor de IA','proj5-desc':'Equipé a los equipos con un journey de adopción claro de la asistencia a la automatización, con una historia de valor ligada a resultados — no solo a ahorro de tiempo.',
+    'proj6-title':'Programa de Engagement Ejecutivo &amp; de Ecosistema','proj6-desc':'Programas de engagement con stakeholders alineando líderes, clientes y partners en torno a las prioridades de transformación de IA escalable.',
+    'insp-eyebrow':'// 04 — Inspiración','insp-title':'Lecturas que valen la pena.',
+    'btn-my-articles':'Mis Artículos ↗','tab-all':'Todo','tab-mine':'Mis Artículos','tab-books':'Libros',
+    'blog-loading':'Cargando',
+    'footer-sub':'Enterprise AI Business Exec · Microsoft · Madrid',
+    'footer-copy':'© 2025 Miguel Vázquez Vicente · Hecho con intención.',
+    'no-items':'Sin elementos para este filtro.'
   }
+};
 
-  // ── SCROLL REVEAL ──
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+var currentLang='en';
 
-  // ── LINKEDIN POSTS (update these with your real posts) ──
-  const linkedinPosts = [
-    {
-      type: 'post',
-      date: 'Mar 2025',
-      text: `✨⭐️ The Microsoft Frontier Agent Platform ⭐️✨
+function setLang(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.getElementById('btn-es').classList.toggle('active',lang==='es');
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(translations[lang][key]!==undefined)el.innerHTML=translations[lang][key];
+  });
+}
 
-What stands out at a glance:
-• One unified UI for AI via Microsoft 365 Copilot across apps and devices
-• Agentic capabilities embedded natively — not bolted on
-• Multi-agent orchestration ready for enterprise scale
-
-The shift from AI tools to AI systems is happening faster than most orgs are ready for. Here's what I'm seeing on the ground...`,
-      likes: '184',
-      comments_count: '23',
-      url: 'https://www.linkedin.com/in/mguelvazquez/',
-      comments: [
-        { initials: 'AL', name: 'Ana L.', text: 'Great breakdown Miguel. The orchestration layer is what most enterprises are missing.' },
-        { initials: 'JM', name: 'Javier M.', text: 'Been following this closely — the Copilot Studio angle is underrated.' },
-      ]
-    },
-    {
-      type: 'post',
-      date: 'Feb 2025',
-      text: `"Quiero que viváis en casa del cliente."
-
-Si alguna vez has trabajado de comercial o en cualquier otra función en el mundo tech, esta frase debería resonarte.
-
-La IA no se vende en un PowerPoint. Se vende en el día a día del cliente, entendiendo su negocio, sus bloqueos reales y co-diseñando con ellos el camino.
-
-Esto es lo que aprendí en mis primeros años en ventas y lo que sigo aplicando hoy para escalar AI en grandes cuentas.`,
-      likes: '312',
-      comments_count: '41',
-      url: 'https://www.linkedin.com/in/mguelvazquez/',
-      comments: [
-        { initials: 'CR', name: 'Carlos R.', text: 'Totalmente de acuerdo. La empatía con el cliente es el diferenciador real.' },
-        { initials: 'PG', name: 'Patricia G.', text: 'Esto se aplica igual de bien a la adopción interna de IA. Gran reflexión.' },
-      ]
-    },
-    {
-      type: 'post',
-      date: 'Jan 2025',
-      text: `Han pasado 4 años desde que GPT-3 nos sorprendió con su capacidad para escribir líneas simples.
-
-Hoy gestionamos deals de IA de €9M ARR con Repsol, Ferrovial e Iberdrola.
-
-El salto no fue tecnológico. Fue cultural.
-
-Lo que realmente desbloqueó la adopción enterprise:
-→ Un valor narrative claro (no "ahorra tiempo", sino "gana ventaja")
-→ Sponsors ejecutivos con skin in the game
-→ Un CoE que no es un comité, sino un motor de cambio
-
-Esto es lo que funciona. Esto es lo que escala.`,
-      likes: '526',
-      comments_count: '68',
-      url: 'https://www.linkedin.com/in/mguelvazquez/',
-      comments: [
-        { initials: 'SR', name: 'Sandra R.', text: 'El CoE como motor de cambio — exactamente lo que necesitamos articular mejor internamente.' },
-        { initials: 'DM', name: 'David M.', text: 'El punto del value narrative es clave. Muchas empresas se quedan en el ROI de papel.' },
-      ]
-    },
-  ];
-
-  // ── ALL CONTENT ──
-  let allArticles = [];
-  let allContent = [];
-  let activeFilter = 'all';
-
-  // ── FILTER LOGIC ──
-  function filterBlog(filter, btn) {
-    activeFilter = filter;
-    document.querySelectorAll('.blog-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    renderGrid();
+(function(){
+var SHEET="https://docs.google.com/spreadsheets/d/e/2PACX-1vQRBIoLcmwyz7kPnkcG_7ykTtVtPBE41hZiaG4kMViyoLrq7PH8g4lmdJePmUSwJBKofgi0kgwqAtWC/pub?output=csv&gid=0";
+var allItems=[];
+var activeFilter="all";
+var els=document.querySelectorAll(".reveal");
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:0.1});
+els.forEach(function(el){obs.observe(el);});
+function splitLine(line){
+  // Strip carriage return (CRLF from Google Sheets)
+  line=line.replace(/\r/g,"");
+  var res=[],cur="",inQ=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===","&&!inQ){res.push(cur.replace(/^"|"$/g,"").trim());cur="";}
+    else{cur+=c;}
   }
-
-  function renderGrid() {
-    const grid = document.getElementById('blog-grid');
-    const filtered = activeFilter === 'all'
-      ? allContent
-      : allContent.filter(c => c.type === activeFilter);
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div style="color:var(--muted);font-family:'DM Mono',monospace;font-size:0.85rem;padding:2rem 0;">${translations[currentLang]['no-content']}</div>`;
-      return;
-    }
-
-    grid.innerHTML = filtered.map(item =>
-      item.type === 'article' ? renderArticleCard(item) : renderLinkedInCard(item)
-    ).join('');
+  res.push(cur.replace(/^"|"$/g,"").trim());
+  return res;
+}
+function parseCSV(text){
+  // Normalise line endings: remove \r, then split on \n
+  var lines=text.replace(/\r/g,"").split("\n");
+  var hdrs=splitLine(lines[0]).map(function(h){return h.toLowerCase().trim();});
+  var rows=[];
+  for(var i=1;i<lines.length;i++){
+    var line=lines[i].trim();
+    if(!line)continue;
+    var cols=splitLine(line);
+    var obj={};
+    hdrs.forEach(function(h,j){obj[h]=(cols[j]||"").trim();});
+    if(obj.title)rows.push(obj);
   }
-
-  function renderArticleCard(item) {
-    return `
-      <a href="${item.url}" target="_blank" class="blog-card" data-type="article">
-        <div class="blog-card-top">
-          <div class="blog-card-date">${item.date}</div>
-          <div class="blog-card-title">${item.title}</div>
-          <div class="blog-card-excerpt">${item.excerpt}</div>
-        </div>
-        <div class="blog-card-footer">
-          <span class="blog-source source-article">
-            <span class="source-badge badge-article"></span>${translations[currentLang]['article-source']}
-          </span>
-          <span class="blog-arrow">→</span>
-        </div>
-      </a>
-    `;
-  }
-
-  function renderLinkedInCard(item) {
-    const commentsHtml = item.comments && item.comments.length ? `
-      <div class="li-comments">
-        <div class="li-comments-label">${translations[currentLang]['li-comments-label']}</div>
-        ${item.comments.map(c => `
-          <div class="li-comment">
-            <div class="li-comment-avatar">${c.initials}</div>
-            <div>
-              <div class="li-comment-name">${c.name}</div>
-              <div class="li-comment-text">${c.text}</div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    ` : '';
-
-    return `
-      <a href="${item.url}" target="_blank" class="li-card" data-type="post">
-        <div class="li-card-header">
-          <div class="li-avatar">MV</div>
-          <div>
-            <div class="li-author-name">Miguel Vázquez Vicente</div>
-            <div class="li-author-role">${translations[currentLang]['li-author-role']}</div>
-          </div>
-        </div>
-        <div class="li-card-body">
-          <div class="li-post-text">${item.text}</div>
-        </div>
-        <div class="li-card-footer">
-          <div class="li-stats">
-            <span class="li-stat">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              ${item.likes}
-            </span>
-            <span class="li-stat">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              ${item.comments_count}
-            </span>
-          </div>
-          <span class="li-date">${item.date}</span>
-        </div>
-        ${commentsHtml}
-      </a>
-    `;
-  }
-
-  // ── FETCH SUBSTACK ──
-  async function loadSubstack() {
-    try {
-      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmiguelvv.substack.com%2Ffeed');
-      const data = await res.json();
-      if (data.status === 'ok' && data.items && data.items.length > 0) {
-        allArticles = data.items.slice(0, 5).map(item => ({
-          type: 'article',
-          date: item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '',
-          title: item.title,
-          excerpt: item.description ? item.description.replace(/<[^>]*>/g, '').slice(0, 130) + '…' : '',
-          url: item.link,
-        }));
-      }
-    } catch(e) {
-      // fallback articles
-      allArticles = [
-        { type:'article', date:'Read on Substack', title:'From AI pilot to enterprise scale: what actually works', excerpt:'The real blockers to AI adoption aren\'t technical — they\'re organizational. Here\'s what I\'ve learned.', url:'https://substack.com/@miguelvv' },
-        { type:'article', date:'Read on Substack', title:'The AI value narrative problem nobody talks about', excerpt:'Time savings is the wrong metric. Here\'s how to tell the story that moves executives to act.', url:'https://substack.com/@miguelvv' },
-      ];
-    }
-
-    // Merge: posts first, then articles, interleaved
-    allContent = [];
-    const maxLen = Math.max(linkedinPosts.length, allArticles.length);
-    for (let i = 0; i < maxLen; i++) {
-      if (linkedinPosts[i]) allContent.push(linkedinPosts[i]);
-      if (allArticles[i]) allContent.push(allArticles[i]);
-    }
-
-    document.getElementById('blog-loading').style.display = 'none';
-    const grid = document.getElementById('blog-grid');
-    grid.style.display = 'grid';
-    renderGrid();
-  }
-
-  loadSubstack();
+  return rows;
+}
+function toDate(s){
+  var clean=(s||"").replace(/"/g,"").trim();
+  // Handle "Month,Year" (missing space) -> "Month Year"
+  clean=clean.replace(/,/g," ");
+  var d=new Date(clean);
+  return isNaN(d.getTime())?new Date(0):d;
+}
+function cardCfg(type){var t=(type||"").toLowerCase().trim();if(t==="my article")return{cls:"card-myarticle",icon:"&#9998;",badge:"My Article"};if(t==="book")return{cls:"card-book",icon:"&#128214;",badge:"Book"};if(t==="linkedin"||t==="substack"||t==="linkedin/substack")return{cls:"card-social",icon:"&#128172;",badge:type};return{cls:"card-article",icon:"&#128240;",badge:"Article"};}
+function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function makeCard(item){var c=cardCfg(item.type);var url=(item.url||"").trim();if(url&&url.indexOf("http")!==0)url="https://"+url;var date=(item.date||"").replace(/"/g,"");return'<a href="'+url+'" target="_blank" rel="noopener" class="c-card '+c.cls+'"><div class="c-card-top"><span class="c-type-badge">'+c.badge+'</span><span class="c-card-icon">'+c.icon+'</span><div class="c-author">'+esc(item.author)+'</div><div class="c-title">'+esc(item.title)+'</div></div><div class="c-desc">'+esc(item.description)+'</div><div class="c-card-footer"><span class="c-date">'+date+'</span><span class="c-arrow">&rarr;</span></div></a>';}
+function syncBtns(){var track=document.getElementById("carousel-track");var bl=document.getElementById("btn-left");var br=document.getElementById("btn-right");if(!track)return;if(bl)bl.disabled=track.scrollLeft<=2;if(br)br.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-4;}
+function render(){var track=document.getElementById("carousel-track");var wrapper=document.getElementById("carousel-wrapper");if(!track||!wrapper)return;var list=activeFilter==="all"?allItems:allItems.filter(function(i){return(i.type||"").toLowerCase().trim()===activeFilter;});track.innerHTML=list.length?list.map(makeCard).join(""):'<div style="color:var(--muted);font-family:monospace;padding:2rem 0;font-size:.85rem">'+translations[currentLang]['no-items']+'</div>';wrapper.style.display="flex";syncBtns();}
+window.filterCards=function(filter,btn){activeFilter=filter;var tabs=document.querySelectorAll(".blog-tab");for(var i=0;i<tabs.length;i++)tabs[i].classList.remove("active");btn.classList.add("active");var track=document.getElementById("carousel-track");if(track)track.scrollLeft=0;render();};
+window.scrollCarousel=function(dir){var track=document.getElementById("carousel-track");if(track)track.scrollBy({left:dir*580,behavior:"smooth"});setTimeout(syncBtns,450);};
+function load(){fetch(SHEET).then(function(r){return r.text();}).then(function(text){var rows=parseCSV(text);rows.sort(function(a,b){return toDate(b.date)-toDate(a.date);});allItems=rows;var lo=document.getElementById("blog-loading");if(lo)lo.style.display="none";render();var track=document.getElementById("carousel-track");if(track)track.addEventListener("scroll",syncBtns);}).catch(function(){allItems=[{title:"Something Big is Happening",author:"Matt Shumer",type:"Article",url:"https://situational-awareness.ai/",description:"Worth reading to sharpen your intuition on how fast AI is really moving.",date:"February 2026"},{title:"From Experiment to Action in AI",author:"Miguel Vazquez",type:"My Article",url:"https://substack.com/home/post/p-165079551",description:"Two years of GenAI in enterprise: key lessons from experiment to real action.",date:"June 2025"},{title:"Situational Awareness",author:"L. Aschenbrenner",type:"Article",url:"https://situational-awareness.ai/",description:"Want to understand how AI models evolve? Start here. Ages well.",date:"June 2024"},{title:"The Lean Startup",author:"Eric Ries",type:"Book",url:"https://en.wikipedia.org/wiki/The_Lean_Startup",description:"Old but Gold. Must read for builders.",date:"September 2011"}];var lo=document.getElementById("blog-loading");if(lo)lo.style.display="none";render();});}
+load();
+})();
 </script>
 </body>
 </html>
