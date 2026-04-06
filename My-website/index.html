@@ -1168,6 +1168,47 @@
     transform: none;
   }
 
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-left: 2rem;
+  }
+
+  .lang-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.22rem 0.55rem;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+
+  .lang-btn.active {
+    color: var(--accent);
+    border-color: rgba(0,180,216,0.4);
+    background: rgba(0,180,216,0.06);
+  }
+
+  .lang-btn:hover:not(.active) {
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .lang-sep {
+    color: var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    user-select: none;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
@@ -1192,11 +1233,16 @@
 <nav>
   <a href="#hero" class="nav-logo">MV<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#blog">Writing</a></li>
+    <li><a href="#about" data-i18n="nav-about">About</a></li>
+    <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+    <li><a href="#blog" data-i18n="nav-writing">Writing</a></li>
     <li><a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank">LinkedIn ↗</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1204,21 +1250,13 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-left">
-        <p class="hero-eyebrow">// Enterprise AI · Madrid, Spain</p>
-        <h1 class="hero-title">
-          Hey, I'm<br>
-          <span class="line2">Miguel.</span>
-        </h1>
-        <p class="hero-role">
-          <strong>Enterprise AI Business Exec</strong><br>
-          @ Microsoft · @Professional Lecturer · @AI Advisor
-        </p>
-        <p class="hero-bio">
-          Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments, orchestrate cross-functional teams, and turn full-stack AI strategy into measurable outcomes.
-        </p>
+        <p class="hero-eyebrow" data-i18n="hero-eyebrow">// Enterprise AI · Madrid, Spain</p>
+        <h1 class="hero-title" data-i18n="hero-title">Hey, I'm<br><span class="line2">Miguel.</span></h1>
+        <p class="hero-role" data-i18n="hero-role"><strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Professional Lecturer · @AI Advisor</p>
+        <p class="hero-bio" data-i18n="hero-bio">Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments, orchestrate cross-functional teams, and turn full-stack AI strategy into measurable outcomes.</p>
         <div class="hero-cta">
-          <a href="#about" class="btn btn-primary">View Resume →</a>
-          <a href="#blog" class="btn btn-outline">Read My Writing</a>
+          <a href="#about" class="btn btn-primary" data-i18n="btn-resume">View Resume →</a>
+          <a href="#blog" class="btn btn-outline" data-i18n="btn-writing">Read My Writing</a>
           <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
         </div>
       </div>
@@ -1231,54 +1269,54 @@
             <div class="exp-bar-title-block">
               <div class="exp-bar-headline">
                 <span class="stat-value" style="color:var(--white);">10+</span>
-                <span class="exp-bar-inline-label">Years in Tech</span>
+                <span class="exp-bar-inline-label" data-i18n="stat-tech-label">Years in Tech</span>
               </div>
-              <div class="exp-bar-subtitle">4 in AI Tech Ecosystem</div>
+              <div class="exp-bar-subtitle" data-i18n="stat-ai-subtitle">4 in AI Tech Ecosystem</div>
             </div>
             <div class="exp-bar-track">
               <div class="exp-bar-fill-base"></div>
               <div class="exp-bar-fill-ai"></div>
             </div>
             <div class="exp-bar-legend">
-              <span class="exp-legend-dot dot-tech"></span><span class="exp-legend-text">Tech career</span>
-              <span class="exp-legend-dot dot-ai"></span><span class="exp-legend-text">AI Tech Ecosystem</span>
+              <span class="exp-legend-dot dot-tech"></span><span class="exp-legend-text" data-i18n="legend-tech">Tech career</span>
+              <span class="exp-legend-dot dot-ai"></span><span class="exp-legend-text" data-i18n="legend-ai">AI Tech Ecosystem</span>
             </div>
           </div>
 
           <div class="stat-divider"></div>
 
           <!-- Industry expertise -->
-          <div class="stat-label" style="margin-bottom:0.6rem;">Industry Expertise</div>
+          <div class="stat-label" style="margin-bottom:0.6rem;" data-i18n="stat-industry">Industry Expertise</div>
           <div class="industry-grid">
             <div class="industry-item">
               <span class="industry-icon">📡</span>
-              <span class="industry-label">Telco</span>
+              <span class="industry-label" data-i18n="ind-telco">Telco</span>
             </div>
             <div class="industry-item">
               <span class="industry-icon">⛽</span>
-              <span class="industry-label">Resources</span>
+              <span class="industry-label" data-i18n="ind-resources">Resources</span>
             </div>
             <div class="industry-item">
               <span class="industry-icon">🏭</span>
-              <span class="industry-label">Manufac&shy;turing</span>
+              <span class="industry-label" data-i18n="ind-manufacturing">Manufac&shy;turing</span>
             </div>
             <div class="industry-item">
               <span class="industry-icon">🏗️</span>
-              <span class="industry-label">Construc&shy;tion</span>
+              <span class="industry-label" data-i18n="ind-construction">Construc&shy;tion</span>
             </div>
           </div>
 
           <div class="stat-divider"></div>
 
           <!-- Operating Stack -->
-          <div class="stat-label" style="margin-bottom:0.6rem;">Operating Stack (End&#8209;to&#8209;End)</div>
+          <div class="stat-label" style="margin-bottom:0.6rem;" data-i18n="stat-stack">Operating Stack (End&#8209;to&#8209;End)</div>
           <div class="stack-layers">
 
             <div class="stack-layer layer-0">
               <span class="layer-icon">⚖️</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 0</div>
-                <div class="layer-name">Regulation & Policy</div>
+                <div class="layer-name" data-i18n="layer-0-name">Regulation & Policy</div>
                 <div class="layer-sub">AI Act · GDPR · Responsible AI</div>
               </div>
             </div>
@@ -1287,7 +1325,7 @@
               <span class="layer-icon">🛡️</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 1</div>
-                <div class="layer-name">Govern · Secure · Observe</div>
+                <div class="layer-name" data-i18n="layer-1-name">Govern · Secure · Observe</div>
                 <div class="layer-sub">Agent365 · Security Platforms</div>
               </div>
             </div>
@@ -1296,7 +1334,7 @@
               <span class="layer-icon">🗄️</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 2</div>
-                <div class="layer-name">Enterprise Knowledge & Data</div>
+                <div class="layer-name" data-i18n="layer-2-name">Enterprise Knowledge & Data</div>
                 <div class="layer-sub">Connectors · Grounding · Retrieval</div>
               </div>
             </div>
@@ -1305,7 +1343,7 @@
               <span class="layer-icon">🧠</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 3</div>
-                <div class="layer-name">Model Layer (LLMs)</div>
+                <div class="layer-name" data-i18n="layer-3-name">Model Layer (LLMs)</div>
                 <div class="layer-sub">Azure OpenAI · AI Foundry · Model Agnostic</div>
               </div>
             </div>
@@ -1314,7 +1352,7 @@
               <span class="layer-icon">🤖</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 4</div>
-                <div class="layer-name">Orchestration & Agent Runtime</div>
+                <div class="layer-name" data-i18n="layer-4-name">Orchestration & Agent Runtime</div>
                 <div class="layer-sub">AI Agents · Copilot · Cowork</div>
               </div>
             </div>
@@ -1323,7 +1361,7 @@
               <span class="layer-icon">🛠️</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 5</div>
-                <div class="layer-name">Build Studio (Low&#8209;code → Pro&#8209;code)</div>
+                <div class="layer-name" data-i18n="layer-5-name">Build Studio (Low&#8209;code → Pro&#8209;code)</div>
                 <div class="layer-sub">Copilot Studio · VS / GitHub · Vibe Coding</div>
               </div>
             </div>
@@ -1332,7 +1370,7 @@
               <span class="layer-icon">🚀</span>
               <div class="layer-content">
                 <div class="layer-num">LAYER 6</div>
-                <div class="layer-name">Adopt · Operate · Monetize</div>
+                <div class="layer-name" data-i18n="layer-6-name">Adopt · Operate · Monetize</div>
                 <div class="layer-sub">CoE Design · Change Mgmt · GTM Strategy</div>
               </div>
             </div>
@@ -1351,47 +1389,43 @@
       <!-- LEFT -->
       <div class="about-left reveal">
         <div class="section-header">
-          <p class="section-eyebrow">// 01 — About</p>
-          <h2 class="section-title">The person behind the pitch.</h2>
+          <p class="section-eyebrow" data-i18n="about-eyebrow">// 01 — About</p>
+          <h2 class="section-title" data-i18n="about-title">The person behind the pitch.</h2>
         </div>
-        <p style="font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:1rem;">
-          Industrial Engineer turned Enterprise AI Sales. I started my career at Vodafone — from Key Account to Product Marketing — then co-founded a sustainable mobility startup, and eventually landed at Microsoft, where I now help Spain's largest enterprises build AI strategies that actually move the needle.
-        </p>
-        <div class="motto">
-          "Leave things better than you found them—and enjoy doing it."
-        </div>
+        <p style="font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:1rem;" data-i18n="about-bio">Industrial Engineer turned Enterprise AI Sales. I started my career at Vodafone — from Key Account to Product Marketing — then co-founded a sustainable mobility startup, and eventually landed at Microsoft, where I now help Spain's largest enterprises build AI strategies that actually move the needle.</p>
+        <div class="motto" data-i18n="about-motto">"Leave things better than you found them—and enjoy doing it."</div>
 
         <div class="skills-block" style="margin-top:2.5rem;">
-          <h4>Technology Expertise</h4>
+          <h4 data-i18n="skills-title">Technology Expertise</h4>
           <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>AI User Interface</span><span>Advanced</span></div>
+            <div class="skill-bar-label"><span data-i18n="skill-ui-name">AI User Interface</span><span data-i18n="skill-ui-level">Advanced</span></div>
             <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>AI Governance</span><span>Advanced</span></div>
+            <div class="skill-bar-label"><span data-i18n="skill-gov-name">AI Governance</span><span data-i18n="skill-gov-level">Advanced</span></div>
             <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%; animation-delay:0.1s"></div></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>AI Security & Compliance</span><span>Medium</span></div>
+            <div class="skill-bar-label"><span data-i18n="skill-sec-name">AI Security & Compliance</span><span data-i18n="skill-sec-level">Medium</span></div>
             <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%; animation-delay:0.2s"></div></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>AI Framework</span><span>Medium</span></div>
+            <div class="skill-bar-label"><span data-i18n="skill-fw-name">AI Framework</span><span data-i18n="skill-fw-level">Medium</span></div>
             <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%; animation-delay:0.3s"></div></div>
           </div>
         </div>
 
         <div class="skills-block">
-          <h4>Languages</h4>
+          <h4 data-i18n="langs-title">Languages</h4>
           <div class="lang-tags">
-            <span class="tag tag-blue">Español — Native</span>
-            <span class="tag tag-dark">English — Professional</span>
-            <span class="tag tag-dim">Português — Limited</span>
+            <span class="tag tag-blue" data-i18n="lang-es">Español — Native</span>
+            <span class="tag tag-dark" data-i18n="lang-en">English — Professional</span>
+            <span class="tag tag-dim" data-i18n="lang-pt">Português — Limited</span>
           </div>
         </div>
 
         <div class="skills-block">
-          <h4>Education</h4>
+          <h4 data-i18n="edu-title">Education</h4>
           <div class="edu-grid">
             <div class="edu-item">
               <div class="edu-degree">Industrial Engineering & Operations Management</div>
@@ -1404,7 +1438,7 @@
               <div class="edu-year">2008 – 2011</div>
             </div>
             <div class="edu-item">
-              <div class="edu-degree">Master in Industrial Management (2nd Course)</div>
+              <div class="edu-degree" data-i18n="edu3-degree">Master in Industrial Management (2nd Course)</div>
               <div class="edu-school">Politechnika Poznanska, Poland</div>
               <div class="edu-year">2011</div>
             </div>
@@ -1415,8 +1449,8 @@
       <!-- RIGHT: EXPERIENCE -->
       <div class="about-right reveal" style="transition-delay:0.15s">
         <div class="section-header">
-          <p class="section-eyebrow">// 02 — Experience</p>
-          <h2 class="section-title">Where I've built.</h2>
+          <p class="section-eyebrow" data-i18n="exp-eyebrow">// 02 — Experience</p>
+          <h2 class="section-title" data-i18n="exp-title">Where I've built.</h2>
         </div>
 
         <div class="timeline">
@@ -1424,11 +1458,11 @@
             <div class="exp-dot"><div class="exp-dot-inner"></div></div>
             <div class="exp-content">
               <div class="exp-header">
-                <div class="exp-title">Enterprise AI Business Sales</div>
-                <div class="exp-period">Oct 2022 — Present</div>
+                <div class="exp-title" data-i18n="exp1-title">Enterprise AI Business Sales</div>
+                <div class="exp-period" data-i18n="exp1-period">Oct 2022 — Present</div>
               </div>
               <div class="exp-company">MICROSOFT · Madrid</div>
-              <div class="exp-desc">Orchestrate cross-functional teams and assess customer needs to develop end-to-end AI strategies covering the full stack — from UI for AI to the LLM layer. Drove revenue from zero to <strong style="color:var(--accent);">€9M annual recurring revenue</strong> in AI. Key deals include Repsol, Ferrovial, and Iberdrola.</div>
+              <div class="exp-desc" data-i18n="exp1-desc">Orchestrate cross-functional teams and assess customer needs to develop end-to-end AI strategies covering the full stack — from UI for AI to the LLM layer. Drove revenue from zero to <strong style="color:var(--accent);">€9M annual recurring revenue</strong> in AI. Key deals include Repsol, Ferrovial, and Iberdrola.</div>
             </div>
           </div>
 
@@ -1437,10 +1471,10 @@
             <div class="exp-content">
               <div class="exp-header">
                 <div class="exp-title">Customer Success Manager — Modern Workplace</div>
-                <div class="exp-period">Feb 2020 — Oct 2022</div>
+                <div class="exp-period" data-i18n="exp2-period">Feb 2020 — Oct 2022</div>
               </div>
               <div class="exp-company">MICROSOFT · Madrid</div>
-              <div class="exp-desc">Drove digital transformation for Financial sector and Manufacturing clients, enhancing collaboration, accelerating knowledge transfer, and fostering innovation for major Spanish enterprises.</div>
+              <div class="exp-desc" data-i18n="exp2-desc">Drove digital transformation for Financial sector and Manufacturing clients, enhancing collaboration, accelerating knowledge transfer, and fostering innovation for major Spanish enterprises.</div>
             </div>
           </div>
 
@@ -1448,11 +1482,11 @@
             <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
             <div class="exp-content">
               <div class="exp-header">
-                <div class="exp-title">Co-Founder</div>
-                <div class="exp-period">Nov 2018 — Dec 2019</div>
+                <div class="exp-title" data-i18n="exp3-title">Co-Founder</div>
+                <div class="exp-period" data-i18n="exp3-period">Nov 2018 — Dec 2019</div>
               </div>
               <div class="exp-company">WELIFEVAN · Barcelona</div>
-              <div class="exp-desc">Co-founded and led digital marketing strategy and growth initiatives, positioning the brand as a competitive player in the sustainable mobility and camper-rental market.</div>
+              <div class="exp-desc" data-i18n="exp3-desc">Co-founded and led digital marketing strategy and growth initiatives, positioning the brand as a competitive player in the sustainable mobility and camper-rental market.</div>
             </div>
           </div>
 
@@ -1464,7 +1498,7 @@
                 <div class="exp-period">Jul 2016 — Jul 2019</div>
               </div>
               <div class="exp-company">VODAFONE · Madrid</div>
-              <div class="exp-desc">Responsible for Product Roadmap, P&L, budget and KPIs of a €20M portfolio. Reported directly to C-level executives.</div>
+              <div class="exp-desc" data-i18n="exp4-desc">Responsible for Product Roadmap, P&L, budget and KPIs of a €20M portfolio. Reported directly to C-level executives.</div>
             </div>
           </div>
 
@@ -1473,10 +1507,10 @@
             <div class="exp-content">
               <div class="exp-header">
                 <div class="exp-title">Corporate Key Account Manager</div>
-                <div class="exp-period">Dec 2013 — Jul 2016</div>
+                <div class="exp-period" data-i18n="exp5-period">Dec 2013 — Jul 2016</div>
               </div>
               <div class="exp-company">VODAFONE SPAIN · Barcelona</div>
-              <div class="exp-desc">Identified customer needs, collaborated with cross-functional teams, and built long-term C-level relationships to enhance customer satisfaction.</div>
+              <div class="exp-desc" data-i18n="exp5-desc">Identified customer needs, collaborated with cross-functional teams, and built long-term C-level relationships to enhance customer satisfaction.</div>
             </div>
           </div>
 
@@ -1484,11 +1518,11 @@
             <div class="exp-dot dim"><div class="exp-dot-inner"></div></div>
             <div class="exp-content">
               <div class="exp-header">
-                <div class="exp-title">Associate Professor — Product Marketing</div>
+                <div class="exp-title" data-i18n="exp6-title">Associate Professor — Product Marketing</div>
                 <div class="exp-period">Oct 2018 — Jun 2019</div>
               </div>
               <div class="exp-company">ESCUELA DE NEGOCIO LLUIS VIVES</div>
-              <div class="exp-desc">Taught product marketing fundamentals to business students alongside professional career.</div>
+              <div class="exp-desc" data-i18n="exp6-desc">Taught product marketing fundamentals to business students alongside professional career.</div>
             </div>
           </div>
         </div>
@@ -1501,16 +1535,16 @@
 <section id="projects">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-eyebrow">// 03 — Projects</p>
-      <h2 class="section-title">AI frameworks I've built in the field.</h2>
+      <p class="section-eyebrow" data-i18n="proj-eyebrow">// 03 — Projects</p>
+      <h2 class="section-title" data-i18n="proj-title">AI frameworks I've built in the field.</h2>
     </div>
 
     <div class="projects-grid">
 
       <div class="project-card reveal">
         <div class="project-icon">🏭</div>
-        <div class="project-title">AI Industry Value Acceleration</div>
-        <div class="project-desc">Built repeatable, industry-focused motions that translate AI capabilities into measurable business outcomes and prioritized opportunity pipelines across Resources, Manufacturing & Construction.</div>
+        <div class="project-title" data-i18n="proj1-title">AI Industry Value Acceleration</div>
+        <div class="project-desc" data-i18n="proj1-desc">Built repeatable, industry-focused motions that translate AI capabilities into measurable business outcomes and prioritized opportunity pipelines across Resources, Manufacturing & Construction.</div>
         <div class="project-tags">
           <span class="tag tag-agents">AI Agents</span>
           <span class="tag tag-gtm2">GTM</span>
@@ -1519,8 +1553,8 @@
 
       <div class="project-card reveal" style="transition-delay:0.08s">
         <div class="project-icon">⚙️</div>
-        <div class="project-title">AI Center of Excellence (CoE)</div>
-        <div class="project-desc">Defined a cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.</div>
+        <div class="project-title" data-i18n="proj2-title">AI Center of Excellence (CoE)</div>
+        <div class="project-desc" data-i18n="proj2-desc">Defined a cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.</div>
         <div class="project-tags">
           <span class="tag tag-agents">AI Agents</span>
           <span class="tag tag-gtm2">GTM</span>
@@ -1530,8 +1564,8 @@
 
       <div class="project-card reveal" style="transition-delay:0.16s">
         <div class="project-icon">📘</div>
-        <div class="project-title">AI Adoption Playbook & Change Framework</div>
-        <div class="project-desc">Packaged a scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.</div>
+        <div class="project-title" data-i18n="proj3-title">AI Adoption Playbook & Change Framework</div>
+        <div class="project-desc" data-i18n="proj3-desc">Packaged a scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.</div>
         <div class="project-tags">
           <span class="tag tag-workforce">Workforce</span>
           <span class="tag tag-gtm2">GTM</span>
@@ -1540,8 +1574,8 @@
 
       <div class="project-card reveal" style="transition-delay:0.24s">
         <div class="project-icon">🤖</div>
-        <div class="project-title">Agentic Workflow Discovery & Prototyping</div>
-        <div class="project-desc">Led workshops to identify repetitive processes, design task-specific "digital workers," and validate practical use cases with business teams.</div>
+        <div class="project-title" data-i18n="proj4-title">Agentic Workflow Discovery & Prototyping</div>
+        <div class="project-desc" data-i18n="proj4-desc">Led workshops to identify repetitive processes, design task-specific "digital workers," and validate practical use cases with business teams.</div>
         <div class="project-tags">
           <span class="tag tag-agents">AI Agents</span>
           <span class="tag tag-workforce">Workforce</span>
@@ -1550,8 +1584,8 @@
 
       <div class="project-card reveal" style="transition-delay:0.32s">
         <div class="project-icon">💡</div>
-        <div class="project-title">AI Value Narrative Creation</div>
-        <div class="project-desc">Enabled teams with a clear adoption journey — from assistance to automation — and a value story tied to outcomes, not just time savings.</div>
+        <div class="project-title" data-i18n="proj5-title">AI Value Narrative Creation</div>
+        <div class="project-desc" data-i18n="proj5-desc">Enabled teams with a clear adoption journey — from assistance to automation — and a value story tied to outcomes, not just time savings.</div>
         <div class="project-tags">
           <span class="tag tag-workforce">Workforce</span>
           <span class="tag tag-gtm2">GTM</span>
@@ -1561,8 +1595,8 @@
 
       <div class="project-card reveal" style="transition-delay:0.40s">
         <div class="project-icon">🎯</div>
-        <div class="project-title">Executive & Ecosystem Engagement Program</div>
-        <div class="project-desc">Orchestrated stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities through events and field orchestration.</div>
+        <div class="project-title" data-i18n="proj6-title">Executive & Ecosystem Engagement Program</div>
+        <div class="project-desc" data-i18n="proj6-desc">Orchestrated stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities through events and field orchestration.</div>
         <div class="project-tags">
           <span class="tag tag-gtm2">GTM</span>
           <span class="tag tag-workforce">Workforce</span>
@@ -1579,11 +1613,11 @@
   <div class="container">
     <div class="blog-header-row reveal">
       <div>
-        <p class="section-eyebrow">// 04 — Writing</p>
-        <h2 class="section-title">Thoughts on AI & Enterprise.</h2>
+        <p class="section-eyebrow" data-i18n="blog-eyebrow">// 04 — Writing</p>
+        <h2 class="section-title" data-i18n="blog-title">Thoughts on AI & Enterprise.</h2>
       </div>
       <div style="display:flex;gap:0.7rem;flex-wrap:wrap;">
-        <a href="https://substack.com/@miguelvv" target="_blank" class="btn btn-outline">All Articles ↗</a>
+        <a href="https://substack.com/@miguelvv" target="_blank" class="btn btn-outline" data-i18n="btn-articles">All Articles ↗</a>
         <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
       </div>
     </div>
@@ -1591,18 +1625,18 @@
     <!-- Filter Tabs -->
     <div class="blog-tabs">
       <button class="blog-tab active" onclick="filterBlog('all', this)">
-        <span class="tab-dot tab-dot-all"></span> All
+        <span class="tab-dot tab-dot-all"></span> <span data-i18n="tab-all">All</span>
       </button>
       <button class="blog-tab" onclick="filterBlog('article', this)">
-        <span class="tab-dot tab-dot-article"></span> Articles
+        <span class="tab-dot tab-dot-article"></span> <span data-i18n="tab-articles">Articles</span>
       </button>
       <button class="blog-tab" onclick="filterBlog('post', this)">
-        <span class="tab-dot tab-dot-post"></span> LinkedIn Posts
+        <span class="tab-dot tab-dot-post"></span> <span data-i18n="tab-posts">LinkedIn Posts</span>
       </button>
     </div>
 
     <div id="blog-loading">
-      Fetching latest posts<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
+      <span data-i18n="blog-loading">Fetching latest posts</span><span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
     </div>
     <div id="blog-grid" class="blog-grid" style="display:none;"></div>
   </div>
@@ -1614,7 +1648,7 @@
     <div class="footer-inner">
       <div class="footer-left">
         <div class="footer-name">Miguel Vázquez Vicente</div>
-        <div class="footer-sub">Enterprise AI Business Exec · Microsoft · Madrid</div>
+        <div class="footer-sub" data-i18n="footer-sub">Enterprise AI Business Exec · Microsoft · Madrid</div>
       </div>
       <div class="social-links">
         <a href="https://www.linkedin.com/in/mguelvazquez/" target="_blank" class="social-link">
@@ -1631,11 +1665,209 @@
         </a>
       </div>
     </div>
-    <div class="footer-copy">© 2025 Miguel Vázquez Vicente · Built with intention.</div>
+    <div class="footer-copy" data-i18n="footer-copy">© 2025 Miguel Vázquez Vicente · Built with intention.</div>
   </div>
 </footer>
 
 <script>
+  // ── TRANSLATIONS ──
+  const translations = {
+    en: {
+      'nav-about': 'About',
+      'nav-projects': 'Projects',
+      'nav-writing': 'Writing',
+      'hero-eyebrow': '// Enterprise AI · Madrid, Spain',
+      'hero-title': 'Hey, I\'m<br><span class="line2">Miguel.</span>',
+      'hero-role': '<strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Professional Lecturer · @AI Advisor',
+      'hero-bio': 'Passionate about empowering organizations and transforming ideas into impactful solutions. I navigate complex AI environments, orchestrate cross-functional teams, and turn full-stack AI strategy into measurable outcomes.',
+      'btn-resume': 'View Resume →',
+      'btn-writing': 'Read My Writing',
+      'btn-articles': 'All Articles ↗',
+      'stat-tech-label': 'Years in Tech',
+      'stat-ai-subtitle': '4 in AI Tech Ecosystem',
+      'legend-tech': 'Tech career',
+      'legend-ai': 'AI Tech Ecosystem',
+      'stat-industry': 'Industry Expertise',
+      'ind-telco': 'Telco',
+      'ind-resources': 'Resources',
+      'ind-manufacturing': 'Manufac\u00adturing',
+      'ind-construction': 'Construc\u00adtion',
+      'stat-stack': 'Operating Stack (End&#8209;to&#8209;End)',
+      'layer-0-name': 'Regulation & Policy',
+      'layer-1-name': 'Govern · Secure · Observe',
+      'layer-2-name': 'Enterprise Knowledge & Data',
+      'layer-3-name': 'Model Layer (LLMs)',
+      'layer-4-name': 'Orchestration & Agent Runtime',
+      'layer-5-name': 'Build Studio (Low&#8209;code → Pro&#8209;code)',
+      'layer-6-name': 'Adopt · Operate · Monetize',
+      'about-eyebrow': '// 01 — About',
+      'about-title': 'The person behind the pitch.',
+      'about-bio': 'Industrial Engineer turned Enterprise AI Sales. I started my career at Vodafone — from Key Account to Product Marketing — then co-founded a sustainable mobility startup, and eventually landed at Microsoft, where I now help Spain\'s largest enterprises build AI strategies that actually move the needle.',
+      'about-motto': '"Leave things better than you found them—and enjoy doing it."',
+      'skills-title': 'Technology Expertise',
+      'skill-ui-name': 'AI User Interface',
+      'skill-ui-level': 'Advanced',
+      'skill-gov-name': 'AI Governance',
+      'skill-gov-level': 'Advanced',
+      'skill-sec-name': 'AI Security & Compliance',
+      'skill-sec-level': 'Medium',
+      'skill-fw-name': 'AI Framework',
+      'skill-fw-level': 'Medium',
+      'langs-title': 'Languages',
+      'lang-es': 'Español — Native',
+      'lang-en': 'English — Professional',
+      'lang-pt': 'Português — Limited',
+      'edu-title': 'Education',
+      'edu3-degree': 'Master in Industrial Management (2nd Course)',
+      'exp-eyebrow': '// 02 — Experience',
+      'exp-title': 'Where I\'ve built.',
+      'exp1-title': 'Enterprise AI Business Sales',
+      'exp1-period': 'Oct 2022 — Present',
+      'exp1-desc': 'Orchestrate cross-functional teams and assess customer needs to develop end-to-end AI strategies covering the full stack — from UI for AI to the LLM layer. Drove revenue from zero to <strong style="color:var(--accent);">€9M annual recurring revenue</strong> in AI. Key deals include Repsol, Ferrovial, and Iberdrola.',
+      'exp2-period': 'Feb 2020 — Oct 2022',
+      'exp2-desc': 'Drove digital transformation for Financial sector and Manufacturing clients, enhancing collaboration, accelerating knowledge transfer, and fostering innovation for major Spanish enterprises.',
+      'exp3-title': 'Co-Founder',
+      'exp3-period': 'Nov 2018 — Dec 2019',
+      'exp3-desc': 'Co-founded and led digital marketing strategy and growth initiatives, positioning the brand as a competitive player in the sustainable mobility and camper-rental market.',
+      'exp4-desc': 'Responsible for Product Roadmap, P&L, budget and KPIs of a €20M portfolio. Reported directly to C-level executives.',
+      'exp5-period': 'Dec 2013 — Jul 2016',
+      'exp5-desc': 'Identified customer needs, collaborated with cross-functional teams, and built long-term C-level relationships to enhance customer satisfaction.',
+      'exp6-title': 'Associate Professor — Product Marketing',
+      'exp6-desc': 'Taught product marketing fundamentals to business students alongside professional career.',
+      'proj-eyebrow': '// 03 — Projects',
+      'proj-title': 'AI frameworks I\'ve built in the field.',
+      'proj1-title': 'AI Industry Value Acceleration',
+      'proj1-desc': 'Built repeatable, industry-focused motions that translate AI capabilities into measurable business outcomes and prioritized opportunity pipelines across Resources, Manufacturing & Construction.',
+      'proj2-title': 'AI Center of Excellence (CoE)',
+      'proj2-desc': 'Defined a cross-functional CoE approach — operating model, governance, and standards — to scale AI across the enterprise while staying in control.',
+      'proj3-title': 'AI Adoption Playbook & Change Framework',
+      'proj3-desc': 'Packaged a scalable adoption model focused on behavior change, champions, guardrails, and continuous learning embedded in daily work.',
+      'proj4-title': 'Agentic Workflow Discovery & Prototyping',
+      'proj4-desc': 'Led workshops to identify repetitive processes, design task-specific "digital workers," and validate practical use cases with business teams.',
+      'proj5-title': 'AI Value Narrative Creation',
+      'proj5-desc': 'Enabled teams with a clear adoption journey — from assistance to automation — and a value story tied to outcomes, not just time savings.',
+      'proj6-title': 'Executive & Ecosystem Engagement Program',
+      'proj6-desc': 'Orchestrated stakeholder engagement programs aligning leaders, customers, and partners around scalable AI transformation priorities through events and field orchestration.',
+      'blog-eyebrow': '// 04 — Writing',
+      'blog-title': 'Thoughts on AI & Enterprise.',
+      'blog-loading': 'Fetching latest posts',
+      'tab-all': 'All',
+      'tab-articles': 'Articles',
+      'tab-posts': 'LinkedIn Posts',
+      'footer-sub': 'Enterprise AI Business Exec · Microsoft · Madrid',
+      'footer-copy': '© 2025 Miguel Vázquez Vicente · Built with intention.',
+      'li-author-role': 'Enterprise AI Business Exec · Microsoft',
+      'li-comments-label': '// Top comments',
+      'no-content': 'No content for this filter yet.',
+      'article-source': 'Article · Substack',
+    },
+    es: {
+      'nav-about': 'Sobre mí',
+      'nav-projects': 'Proyectos',
+      'nav-writing': 'Artículos',
+      'hero-eyebrow': '// Enterprise AI · Madrid, España',
+      'hero-title': 'Hola, soy<br><span class="line2">Miguel.</span>',
+      'hero-role': '<strong>Enterprise AI Business Exec</strong><br>@ Microsoft · @Profesor · @Asesor de IA',
+      'hero-bio': 'Apasionado por impulsar organizaciones y transformar ideas en soluciones de impacto. Navego entornos complejos de IA, coordino equipos multifuncionales y convierto la estrategia de IA end-to-end en resultados medibles.',
+      'btn-resume': 'Ver Currículum →',
+      'btn-writing': 'Leer mis artículos',
+      'btn-articles': 'Todos los artículos ↗',
+      'stat-tech-label': 'Años en tecnología',
+      'stat-ai-subtitle': '4 en el ecosistema de IA',
+      'legend-tech': 'Carrera tecnológica',
+      'legend-ai': 'Ecosistema de IA',
+      'stat-industry': 'Sectores de especialización',
+      'ind-telco': 'Telco',
+      'ind-resources': 'Recursos',
+      'ind-manufacturing': 'Manufac\u00adtura',
+      'ind-construction': 'Construc\u00adción',
+      'stat-stack': 'Stack operativo (End&#8209;to&#8209;End)',
+      'layer-0-name': 'Regulación & Política',
+      'layer-1-name': 'Govern · Secure · Observe',
+      'layer-2-name': 'Conocimiento & Datos Empresariales',
+      'layer-3-name': 'Capa de Modelos (LLMs)',
+      'layer-4-name': 'Orquestación & Agent Runtime',
+      'layer-5-name': 'Build Studio (Low&#8209;code → Pro&#8209;code)',
+      'layer-6-name': 'Adoptar · Operar · Monetizar',
+      'about-eyebrow': '// 01 — Sobre mí',
+      'about-title': 'La persona detrás del discurso.',
+      'about-bio': 'Ingeniero Industrial reconvertido en ventas de IA empresarial. Empecé mi carrera en Vodafone — desde Key Account hasta Product Marketing — luego cofundé una startup de movilidad sostenible y terminé aterrizando en Microsoft, donde ayudo a las grandes empresas españolas a construir estrategias de IA que realmente mueven la aguja.',
+      'about-motto': '"Deja las cosas mejor de como las encontraste—y disfruta haciéndolo."',
+      'skills-title': 'Expertise Tecnológico',
+      'skill-ui-name': 'Interfaz de usuario de IA',
+      'skill-ui-level': 'Avanzado',
+      'skill-gov-name': 'AI Governance',
+      'skill-gov-level': 'Avanzado',
+      'skill-sec-name': 'Seguridad & Compliance de IA',
+      'skill-sec-level': 'Medio',
+      'skill-fw-name': 'AI Framework',
+      'skill-fw-level': 'Medio',
+      'langs-title': 'Idiomas',
+      'lang-es': 'Español — Nativo',
+      'lang-en': 'English — Profesional',
+      'lang-pt': 'Português — Básico',
+      'edu-title': 'Formación',
+      'edu3-degree': 'Máster en Gestión Industrial (2º Curso)',
+      'exp-eyebrow': '// 02 — Experiencia',
+      'exp-title': 'Donde lo he construido.',
+      'exp1-title': 'Enterprise AI Business Sales',
+      'exp1-period': 'Oct 2022 — Presente',
+      'exp1-desc': 'Orquesto equipos multifuncionales y evalúo las necesidades del cliente para desarrollar estrategias de IA end-to-end que cubren el stack completo — desde la UI para IA hasta la capa LLM. Crecí el revenue de cero a <strong style="color:var(--accent);">€9M de ingresos recurrentes anuales</strong> en IA. Cuentas clave: Repsol, Ferrovial e Iberdrola.',
+      'exp2-period': 'Feb 2020 — Oct 2022',
+      'exp2-desc': 'Lideré la transformación digital para clientes del sector financiero y manufacturero, mejorando la colaboración, acelerando la transferencia de conocimiento y fomentando la innovación en grandes empresas españolas.',
+      'exp3-title': 'Co-Fundador',
+      'exp3-period': 'Nov 2018 — Dic 2019',
+      'exp3-desc': 'Cofundé y lideré la estrategia de marketing digital e iniciativas de crecimiento, posicionando la marca como actor competitivo en el mercado de movilidad sostenible y alquiler de furgonetas camper.',
+      'exp4-desc': 'Responsable del Product Roadmap, P&L, presupuesto y KPIs de una cartera de €20M. Reportaba directamente a ejecutivos C-level.',
+      'exp5-period': 'Dic 2013 — Jul 2016',
+      'exp5-desc': 'Identifiqué necesidades del cliente, colaboré con equipos multifuncionales y construí relaciones a largo plazo con ejecutivos C-level para mejorar la satisfacción del cliente.',
+      'exp6-title': 'Profesor Asociado — Product Marketing',
+      'exp6-desc': 'Impartí fundamentos de product marketing a estudiantes de negocio compaginándolo con la carrera profesional.',
+      'proj-eyebrow': '// 03 — Proyectos',
+      'proj-title': 'Frameworks de IA que he construido sobre el terreno.',
+      'proj1-title': 'Aceleración del valor de IA por industria',
+      'proj1-desc': 'Construí motions repetibles centrados en la industria que traducen las capacidades de IA en resultados de negocio medibles y pipelines de oportunidad priorizados en los sectores de Recursos, Manufactura y Construcción.',
+      'proj2-title': 'AI Center of Excellence (CoE)',
+      'proj2-desc': 'Definí un enfoque de CoE transversal — modelo operativo, gobernanza y estándares — para escalar la IA en toda la empresa manteniendo el control.',
+      'proj3-title': 'Playbook de Adopción de IA & Marco de Cambio',
+      'proj3-desc': 'Diseñé un modelo de adopción escalable centrado en el cambio de comportamiento, champions, guardrails y aprendizaje continuo integrado en el trabajo diario.',
+      'proj4-title': 'Descubrimiento & Prototipado de Flujos Agénticos',
+      'proj4-desc': 'Lideré talleres para identificar procesos repetitivos, diseñar "trabajadores digitales" específicos y validar casos de uso prácticos con equipos de negocio.',
+      'proj5-title': 'Creación de Narrativa de Valor de IA',
+      'proj5-desc': 'Equipé a los equipos con un journey de adopción claro — de la asistencia a la automatización — y una historia de valor ligada a resultados, no solo a ahorro de tiempo.',
+      'proj6-title': 'Programa de Engagement Ejecutivo & de Ecosistema',
+      'proj6-desc': 'Orquesté programas de engagement con stakeholders alineando líderes, clientes y partners en torno a las prioridades de transformación de IA escalable a través de eventos y orquestación de campo.',
+      'blog-eyebrow': '// 04 — Artículos',
+      'blog-title': 'Reflexiones sobre IA y la empresa.',
+      'blog-loading': 'Cargando últimas publicaciones',
+      'tab-all': 'Todo',
+      'tab-articles': 'Artículos',
+      'tab-posts': 'Posts de LinkedIn',
+      'footer-sub': 'Enterprise AI Business Exec · Microsoft · Madrid',
+      'footer-copy': '© 2025 Miguel Vázquez Vicente · Hecho con intención.',
+      'li-author-role': 'Enterprise AI Business Exec · Microsoft',
+      'li-comments-label': '// Comentarios destacados',
+      'no-content': 'Sin contenido para este filtro.',
+      'article-source': 'Artículo · Substack',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    if (allContent.length > 0) renderGrid();
+  }
+
   // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1732,7 +1964,7 @@ Esto es lo que funciona. Esto es lo que escala.`,
       : allContent.filter(c => c.type === activeFilter);
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<div style="color:var(--muted);font-family:'DM Mono',monospace;font-size:0.85rem;padding:2rem 0;">No content for this filter yet.</div>`;
+      grid.innerHTML = `<div style="color:var(--muted);font-family:'DM Mono',monospace;font-size:0.85rem;padding:2rem 0;">${translations[currentLang]['no-content']}</div>`;
       return;
     }
 
@@ -1751,7 +1983,7 @@ Esto es lo que funciona. Esto es lo que escala.`,
         </div>
         <div class="blog-card-footer">
           <span class="blog-source source-article">
-            <span class="source-badge badge-article"></span>Article · Substack
+            <span class="source-badge badge-article"></span>${translations[currentLang]['article-source']}
           </span>
           <span class="blog-arrow">→</span>
         </div>
@@ -1762,7 +1994,7 @@ Esto es lo que funciona. Esto es lo que escala.`,
   function renderLinkedInCard(item) {
     const commentsHtml = item.comments && item.comments.length ? `
       <div class="li-comments">
-        <div class="li-comments-label">// Top comments</div>
+        <div class="li-comments-label">${translations[currentLang]['li-comments-label']}</div>
         ${item.comments.map(c => `
           <div class="li-comment">
             <div class="li-comment-avatar">${c.initials}</div>
@@ -1781,7 +2013,7 @@ Esto es lo que funciona. Esto es lo que escala.`,
           <div class="li-avatar">MV</div>
           <div>
             <div class="li-author-name">Miguel Vázquez Vicente</div>
-            <div class="li-author-role">Enterprise AI Business Exec · Microsoft</div>
+            <div class="li-author-role">${translations[currentLang]['li-author-role']}</div>
           </div>
         </div>
         <div class="li-card-body">
